@@ -1,0 +1,2291 @@
+GAME
+{
+	version = 0.90.0
+	Title = Mun Race (Easy)
+	Description = Participate to the mun race! Your prime minister want to be re-elected and you're his last hope.
+	linkURL = 
+	linkCaption = 
+	Mode = CAREER
+	Status = 1
+	scene = 5
+	editor = None
+	flag = Squad/Flags/default
+	launchID = 117
+	PARAMETERS
+	{
+		preset = Normal
+		FLIGHT
+		{
+			CanQuickSave = True
+			CanQuickLoad = True
+			CanAutoSave = True
+			CanUseMap = True
+			CanSwitchVesselsNear = True
+			CanSwitchVesselsFar = True
+			CanTimeWarpHigh = True
+			CanTimeWarpLow = True
+			CanEVA = True
+			CanIVA = True
+			CanBoard = True
+			CanRestart = True
+			CanLeaveToEditor = True
+			CanLeaveToTrackingStation = True
+			CanLeaveToSpaceCenter = True
+			CanLeaveToMainMenu = False
+		}
+		EDITOR
+		{
+			CanSave = True
+			CanLoad = True
+			CanStartNew = True
+			CanLaunch = True
+			CanLeaveToSpaceCenter = True
+			CanLeaveToMainMenu = False
+			startUpMode = 0
+			craftFileToLoad = 
+		}
+		TRACKINGSTATION
+		{
+			CanFlyVessel = True
+			CanAbortVessel = True
+			CanLeaveToSpaceCenter = True
+			CanLeaveToMainMenu = False
+		}
+		SPACECENTER
+		{
+			CanGoInVAB = True
+			CanGoInSPH = True
+			CanGoInTrackingStation = True
+			CanLaunchAtPad = True
+			CanLaunchAtRunway = True
+			CanLeaveToMainMenu = True
+		}
+		DIFFICULTY
+		{
+			AutoHireCrews = True
+			MissingCrewsRespawn = True
+			BypassEntryPurchaseAfterResearch = True
+			AllowStockVessels = False
+			IndestructibleFacilities = False
+		}
+		CAREER
+		{
+			StartingFunds = 10000
+			StartingScience = 0
+			StartingReputation = 0
+			FundsGainMultiplier = 1
+			RepGainMultiplier = 1
+			ScienceGainMultiplier = 1
+			FundsLossMultiplier = 1
+			RepLossMultiplier = 1
+		}
+	}
+	SCENARIO
+	{
+		name = ContractSystem
+		scene = 7, 8, 5, 6
+		update = 440715.283374189
+		CONTRACTS
+		{
+			CONTRACT
+			{
+				guid = 38e0c29b-50b0-4373-b5af-92591c9bcfc2
+				type = BTSMContractPayloadToKerbinOrbitBasic
+				prestige = 0
+				seed = -1914777483
+				state = Offered
+				agent = Kerbodyne
+				deadlineType = None
+				expiryType = None
+				values = 0,0,0,56250,28125,0,38,38,0,0,0,0
+				payloadSize = 2
+				body = 1
+				PARAM
+				{
+					name = BTSMContractParameterPayloadDeliver
+					state = Incomplete
+					values = 0,0,0,0,0
+					PARAM
+					{
+						name = BTSMContractParameterPayloadOrbit
+						state = Incomplete
+						disableOnStateChange = False
+						values = 0,0,0,0,0
+						body = 1
+						PARAM
+						{
+							name = BTSMContractParameterPayloadLaunch
+							state = Incomplete
+							values = 0,0,0,0,0
+							payloadSize = 2
+						}
+					}
+				}
+			}
+			CONTRACT
+			{
+				guid = db60898a-dffb-48ac-aebb-654e2568e3c2
+				type = BTSMContractPayloadToOrbit
+				prestige = 0
+				seed = -270856749
+				state = Offered
+				agent = O.M.B. Demolition Enterprises
+				deadlineType = None
+				expiryType = None
+				values = 0,0,0,59062.497317791,29531.2486588955,0,36.19048,38,0,0,0,0
+				payloadSize = 2
+				body = 1
+				PARAM
+				{
+					name = BTSMContractParameterPayloadDeliver
+					state = Incomplete
+					values = 0,0,0,0,0
+					PARAM
+					{
+						name = BTSMContractParameterPayloadOrbit
+						state = Incomplete
+						disableOnStateChange = False
+						values = 0,0,0,0,0
+						body = 1
+						PARAM
+						{
+							name = BTSMContractParameterPayloadLaunch
+							state = Incomplete
+							values = 0,0,0,0,0
+							payloadSize = 2
+						}
+					}
+				}
+			}
+			CONTRACT
+			{
+				guid = 33284522-63df-4954-82ec-b482aa2884ba
+				type = BTSMContractPayloadToKerbinOrbitBasic
+				prestige = 0
+				seed = 527168258
+				state = Offered
+				agent = Sean's Cannery
+				deadlineType = None
+				expiryType = None
+				values = 0,0,0,60834.3705475331,29531.2486588955,0,36.19048,38,0,0,0,0
+				payloadSize = 2
+				body = 1
+				PARAM
+				{
+					name = BTSMContractParameterPayloadDeliver
+					state = Incomplete
+					values = 0,0,0,0,0
+					PARAM
+					{
+						name = BTSMContractParameterPayloadOrbit
+						state = Incomplete
+						disableOnStateChange = False
+						values = 0,0,0,0,0
+						body = 1
+						PARAM
+						{
+							name = BTSMContractParameterPayloadLaunch
+							state = Incomplete
+							values = 0,0,0,0,0
+							payloadSize = 2
+						}
+					}
+				}
+			}
+			CONTRACT
+			{
+				guid = 30989693-aebe-4298-8220-db20d0d94c67
+				type = BTSMContractPayloadMilitaryFirst
+				prestige = 0
+				seed = -5549814
+				state = Offered
+				agent = Kerbal Freedom Commandoes
+				deadlineType = None
+				expiryType = None
+				values = 0,0,0,10000,5000,0,10,10,0,0,0,0
+				payloadSize = 1
+				body = 1
+				targetName = Old Airfield
+				payloadType = Warhead
+				numTargets = 1
+				PARAM
+				{
+					name = BTSMContractParameterPayloadMilitaryLaunch
+					state = Incomplete
+					values = 0,0,0,0,0
+					numPayloadsSet = 0
+					payloadSize = 1
+					payloadType = Warhead
+					numPayloads = 1
+				}
+				PARAM
+				{
+					name = BTSMContractParameterPayloadMilitaryHitTarget
+					state = Incomplete
+					values = 0,0,0,0,0
+					numPayloadsSet = 0
+					payloadSize = 1
+					payloadType = Warhead
+					body = 1
+					latitude = -1.522
+					longitude = -71.905
+					altitudeOffset = 20
+					targetName = Old Airfield
+					targetRange = 100
+					targetID = 0
+				}
+			}
+			CONTRACT
+			{
+				guid = 9a8ffd33-f252-4718-bf44-20000dc1c1ea
+				type = MerillContractUseCamera
+				prestige = 1
+				seed = -1914777429
+				state = Offered
+				agent = General secretary of Kerbin
+				deadlineType = None
+				expiryType = None
+				values = 0,0,0,10000,0,0,0,0,0,0,0,0
+				body2Shoot = Mun
+				situation = InSpaceLow
+				withKerbal = false
+				PARAM
+				{
+					name = MerillContractParameterCameraFooting
+					state = Incomplete
+					values = 40000,0,0,5,0
+					body = Mun
+					situation = InSpaceHigh
+					withKerbal = false
+				}
+				PARAM
+				{
+					name = MerillContractParameterCameraFooting
+					state = Incomplete
+					values = 40000,0,0,5,0
+					body = Mun
+					situation = InSpaceLow
+					withKerbal = false
+				}
+				PARAM
+				{
+					name = MerillContractParameterCameraFooting
+					state = Incomplete
+					values = 40000,0,0,10,0
+					body = Mun
+					situation = SrfLanded
+					withKerbal = false
+				}
+			}
+			CONTRACT
+			{
+				guid = 15b534b3-4fcb-4d9d-a9ab-269e7f9189b6
+				type = BTSMContractExploreBody
+				prestige = 1
+				seed = -1914777433
+				state = Offered
+				agent = Research & Development Department
+				deadlineType = None
+				expiryType = None
+				values = 0,0,0,50000,0,0,200,0,0,0,0,0
+				body = 2
+				PARAM
+				{
+					name = EnterOrbit
+					state = Incomplete
+					values = 10000,0,0,50,0
+					body = 2
+				}
+				PARAM
+				{
+					name = CollectScience
+					state = Incomplete
+					values = 10000,0,0,25,0
+					body = 2
+					location = Space
+				}
+				PARAM
+				{
+					name = LandOnBody
+					state = Incomplete
+					values = 10000,0,0,50,0
+					body = 2
+				}
+				PARAM
+				{
+					name = CollectScience
+					state = Incomplete
+					values = 10000,0,0,25,0
+					body = 2
+					location = Surface
+				}
+			}
+			CONTRACT
+			{
+				guid = 8759f083-7939-4696-b369-672d683a118e
+				type = BTSMContractFlybyMunManned
+				prestige = 1
+				seed = 1305244157
+				state = Offered
+				agent = Kerbin World-Firsts Record-Keeping Society
+				deadlineType = None
+				expiryType = None
+				values = 0,0,0,150000,62500,0,221.84,94,0,0,0,0
+				PARAM
+				{
+					name = BTSMContractParameterDesignatedKerbalRecover
+					state = Incomplete
+					values = 0,0,0,0,0
+					PARAM
+					{
+						name = BTSMContractParameterDesignatedKerbalReachBody
+						state = Incomplete
+						values = 0,0,0,0,0
+						body = 2
+						PARAM
+						{
+							name = BTSMContractParameterLaunchKerbal
+							state = Incomplete
+							values = 0,0,0,0,0
+						}
+					}
+				}
+			}
+			CONTRACT
+			{
+				guid = 85014818-15fa-44ff-aadf-4cfbe9c07cf2
+				type = MerillContractUseCamera
+				prestige = 1
+				seed = -1914777466
+				state = Offered
+				agent = General secretary of Kerbin
+				deadlineType = None
+				expiryType = None
+				values = 0,0,0,30000,0,0,20,0,0,0,0,0
+				body2Shoot = Mun
+				situation = InSpaceLow
+				withKerbal = true
+				PARAM
+				{
+					name = MerillContractParameterCameraFooting
+					state = Incomplete
+					values = 0,0,0,0,0
+					body = Mun
+					situation = InSpaceLow
+					withKerbal = true
+				}
+			}
+			CONTRACT
+			{
+				guid = 40759ed9-114e-4371-9c3e-f40d56826414
+				type = BTSMContractPlantFlag
+				prestige = 1
+				seed = -1914777422
+				state = Offered
+				agent = Kerbin World-Firsts Record-Keeping Society
+				deadlineType = None
+				expiryType = None
+				values = 0,0,0,300000,93750,0,442.5,94,0,0,0,0
+				body = 2
+				PARAM
+				{
+					name = BTSMContractParameterDesignatedKerbalRecover
+					state = Incomplete
+					values = 0,0,0,0,0
+					PARAM
+					{
+						name = BTSMContractParameterPlantFlagWithKerbal
+						state = Incomplete
+						values = 0,0,0,0,0
+						body = 2
+					}
+				}
+			}
+			CONTRACT
+			{
+				guid = 6ea11ee7-3a98-4934-b016-57c6b2266634
+				type = BTSMMerillContractPlantFlagMun
+				prestige = 2
+				seed = -1914777487
+				state = Offered
+				agent = General secretary of Kerbin
+				deadlineType = Fixed
+				expiryType = None
+				values = 0,97200,0,0,2499999,0,0,2499,0,0,97200,0
+				PARAM
+				{
+					name = MerillContractParameterSuccessContract
+					state = Incomplete
+					values = 0,0,0,0,0
+					contractTitle = Plant a Flag on the Mun!
+				}
+			}
+			CONTRACT_FINISHED
+			{
+				guid = f00f771c-2d6d-4fa3-87f7-e72cec876595
+				type = BTSMContractWeatherSurvey
+				prestige = 0
+				seed = 1965591761
+				state = Completed
+				agent = Kerbin World-Firsts Record-Keeping Society
+				deadlineType = None
+				expiryType = None
+				values = 21600,21600,4999.9999076128,0,5450,0,0,5,0,1399.24331298794,0,0
+				PARAM
+				{
+					name = BTSMContractParameterCollectScience
+					enabled = False
+					state = Complete
+					values = 0,0,0,0,0
+					body = 1
+					experiment = temperatureScan
+					situation = FlyingHigh
+				}
+				PARAM
+				{
+					name = BTSMContractParameterCollectScience
+					enabled = False
+					state = Complete
+					values = 0,0,0,0,0
+					body = 1
+					experiment = barometerScan
+					situation = FlyingHigh
+				}
+			}
+			CONTRACT_FINISHED
+			{
+				guid = a1d66f47-4331-4170-9f4b-f4fd1231de92
+				type = BTSMContractImpactor
+				prestige = 1
+				seed = 19996057
+				state = Completed
+				agent = Research & Development Department
+				deadlineType = None
+				expiryType = None
+				values = 0,0,0,62500,0,75,50,0,0,8958.49979740943,0,0
+				PARAM
+				{
+					name = BTSMContractParameterImpactor
+					enabled = False
+					state = Complete
+					values = 0,0,0,0,0
+					body = 2
+				}
+			}
+			CONTRACT_FINISHED
+			{
+				guid = f280ad47-85fb-4aa7-8baf-4f15fad0f3be
+				type = BTSMContractDocking
+				prestige = 1
+				seed = 19996061
+				state = Completed
+				agent = Research & Development Department
+				deadlineType = None
+				expiryType = None
+				values = 0,0,0,93750,23438,100,50,12,0,34763.3961840947,0,0
+				PARAM
+				{
+					name = BTSMContractParameterTransponderDock
+					enabled = False
+					state = Complete
+					values = 0,0,0,0,0
+					transponderGUID = cb44e3eb-f037-49dd-85aa-a273bfdc3d63
+					transponder2GUID = e53b965b-d304-4def-b386-0cee7716d359
+					PARAM
+					{
+						name = BTSMContractParameterTransponderOrbit
+						state = Complete
+						disableOnStateChange = False
+						values = 0,0,0,0,0
+						transponderGUID = cb44e3eb-f037-49dd-85aa-a273bfdc3d63
+						PARAM
+						{
+							name = BTSMContractParameterTransponderLaunch
+							state = Complete
+							values = 0,0,0,0,0
+							transponderGUID = cb44e3eb-f037-49dd-85aa-a273bfdc3d63
+						}
+					}
+					PARAM
+					{
+						name = BTSMContractParameterTransponderOrbit
+						state = Complete
+						disableOnStateChange = False
+						values = 0,0,0,0,0
+						transponderGUID = e53b965b-d304-4def-b386-0cee7716d359
+						PARAM
+						{
+							name = BTSMContractParameterTransponderLaunch
+							enabled = False
+							state = Complete
+							values = 0,0,0,0,0
+							transponderGUID = e53b965b-d304-4def-b386-0cee7716d359
+						}
+					}
+				}
+			}
+			CONTRACT_FINISHED
+			{
+				guid = 98c1f49a-7396-4723-b9dd-6f7dc2d67ff7
+				type = BTSMContractReachSpace
+				prestige = 0
+				seed = 484582981
+				state = Completed
+				agent = Kerbin World-Firsts Record-Keeping Society
+				deadlineType = None
+				expiryType = None
+				values = 0,0,0,22935.7793927193,0,0,38.15,0,0,948.389274902213,0,0
+				PARAM
+				{
+					name = ReachAltitudeEnvelope
+					enabled = False
+					state = Complete
+					values = 0,0,0,0,0
+					maxAlt = 250000
+					minAlt = 70000
+					useAltLimit = True
+					title = 
+				}
+			}
+			CONTRACT_FINISHED
+			{
+				guid = b6a0ac7d-11d1-49e0-8113-70b54e3f54ba
+				type = BTSMContractOrbitKerbin
+				prestige = 1
+				seed = 1201287712
+				state = Completed
+				agent = Kerbin World-Firsts Record-Keeping Society
+				deadlineType = None
+				expiryType = None
+				values = 0,0,0,52966.0992324352,0,50,118,0,0,1399.24331298794,0,0
+				PARAM
+				{
+					name = EnterOrbit
+					enabled = False
+					state = Complete
+					values = 0,0,0,0,0
+					body = 1
+				}
+			}
+			CONTRACT_FINISHED
+			{
+				guid = 5f22fed3-2073-4450-aea6-061e1ac2beb1
+				type = BTSMContractEVAFirst
+				prestige = 1
+				seed = -1833543671
+				state = Completed
+				agent = Research & Development Department
+				deadlineType = None
+				expiryType = None
+				values = 0,0,0,62500,31250,125,94,47,0,53815.0000894473,0,0
+				PARAM
+				{
+					name = BTSMContractParameterDesignatedKerbalRecover
+					enabled = False
+					state = Complete
+					values = 0,0,0,0,0
+					kerbal = Jebediah Kerman
+					PARAM
+					{
+						name = BTSMContractParameterDesignatedKerbalEVAInOrbit
+						enabled = False
+						state = Complete
+						values = 0,0,0,0,0
+						kerbal = Jebediah Kerman
+						body = 1
+						PARAM
+						{
+							name = BTSMContractParameterLaunchKerbal
+							enabled = False
+							state = Complete
+							values = 0,0,0,0,0
+							kerbal = Jebediah Kerman
+						}
+					}
+				}
+			}
+			CONTRACT_FINISHED
+			{
+				guid = 625fce47-2809-4e3e-a067-4357ca792061
+				type = BTSMContractOrbitKerbinManned
+				prestige = 1
+				seed = 574957046
+				state = Completed
+				agent = Kerbin World-Firsts Record-Keeping Society
+				deadlineType = None
+				expiryType = None
+				values = 0,0,0,79449.1488486528,46875,0,110.92,47,0,45830.1669649031,0,0
+				PARAM
+				{
+					name = BTSMContractParameterDesignatedKerbalRecover
+					enabled = False
+					state = Complete
+					values = 0,0,0,0,0
+					kerbal = Keldrin Kerman
+					PARAM
+					{
+						name = BTSMContractParameterDesignatedKerbalReachOrbit
+						enabled = False
+						state = Complete
+						values = 0,0,0,0,0
+						kerbal = Keldrin Kerman
+						PARAM
+						{
+							name = BTSMContractParameterLaunchKerbal
+							enabled = False
+							state = Complete
+							values = 0,0,0,0,0
+							kerbal = Keldrin Kerman
+						}
+					}
+				}
+			}
+			CONTRACT_FINISHED
+			{
+				guid = 56b92b2b-3f5e-4021-943b-3c9d55a048aa
+				type = BTSMContractReachSpaceHigh
+				prestige = 0
+				seed = 1098211741
+				state = Completed
+				agent = Kerbin World-Firsts Record-Keeping Society
+				deadlineType = None
+				expiryType = None
+				values = 0,0,0,27522.9352712631,0,0,43.6,0,0,1399.24331298794,0,0
+				PARAM
+				{
+					name = ReachAltitudeEnvelope
+					enabled = False
+					state = Complete
+					values = 0,0,0,0,0
+					maxAlt = 85000000
+					minAlt = 250000
+					useAltLimit = True
+					title = 
+				}
+			}
+			CONTRACT_FINISHED
+			{
+				guid = 99ef0039-2fba-4814-b40b-3a00d829af4b
+				type = BTSMContractAltitudeRecordManned
+				prestige = 1
+				seed = 484583037
+				state = Completed
+				agent = Kerbin World-Firsts Record-Keeping Society
+				deadlineType = None
+				expiryType = None
+				values = 0,0,0,12492.3723005652,6250,0,12.98,0,0,948.389274902213,0,0
+				PARAM
+				{
+					name = BTSMContractParameterDesignatedKerbalRecover
+					enabled = False
+					state = Complete
+					values = 0,0,0,0,0
+					kerbal = Jebediah Kerman
+					PARAM
+					{
+						name = BTSMContractParameterDesignatedKerbalReachAltitude
+						enabled = False
+						state = Complete
+						values = 0,0,0,0,0
+						kerbal = Jebediah Kerman
+						alt = 12500
+						PARAM
+						{
+							name = BTSMContractParameterLaunchKerbal
+							enabled = False
+							state = Complete
+							values = 0,0,0,0,0
+							kerbal = Jebediah Kerman
+						}
+					}
+				}
+			}
+			CONTRACT_FINISHED
+			{
+				guid = b13f9b78-c9ae-4b88-8039-9a3a9048edb9
+				type = BTSMContractAltitudeRecordManned
+				prestige = 1
+				seed = 257636755
+				state = Completed
+				agent = Kerbin World-Firsts Record-Keeping Society
+				deadlineType = None
+				expiryType = None
+				values = 0,0,0,24983.8971435428,12500,0,25.96,0,0,2128.40331298728,0,0
+				PARAM
+				{
+					name = BTSMContractParameterDesignatedKerbalRecover
+					enabled = False
+					state = Complete
+					values = 0,0,0,0,0
+					kerbal = Jebediah Kerman
+					PARAM
+					{
+						name = BTSMContractParameterDesignatedKerbalReachAltitude
+						enabled = False
+						state = Complete
+						values = 0,0,0,0,0
+						kerbal = Jebediah Kerman
+						alt = 30000
+						PARAM
+						{
+							name = BTSMContractParameterLaunchKerbal
+							enabled = False
+							state = Complete
+							values = 0,0,0,0,0
+							kerbal = Jebediah Kerman
+						}
+					}
+				}
+			}
+			CONTRACT_FINISHED
+			{
+				guid = b7622a71-c388-4f06-88d3-df0640016ab7
+				type = BTSMContractAltitudeRecord
+				prestige = 0
+				seed = 5616227
+				state = Completed
+				agent = Kerbin World-Firsts Record-Keeping Society
+				deadlineType = None
+				expiryType = None
+				values = 0,0,0,4999.9999076128,0,0,9.81,0,0,12.1999999999998,0,0
+				PARAM
+				{
+					name = ReachAltitudeEnvelope
+					enabled = False
+					state = Complete
+					values = 0,0,0,0,0
+					maxAlt = 70000
+					minAlt = 12500
+					useAltLimit = True
+					title = 
+				}
+			}
+			CONTRACT_FINISHED
+			{
+				guid = b7ba41d5-6b13-46fa-b3ea-12d7b3463aaa
+				type = BTSMContractAltitudeRecord
+				prestige = 0
+				seed = 1462205013
+				state = Completed
+				agent = Kerbin World-Firsts Record-Keeping Society
+				deadlineType = None
+				expiryType = None
+				values = 0,0,0,9999.9998152256,0,0,19.62,0,0,340.729875488296,0,0
+				PARAM
+				{
+					name = ReachAltitudeEnvelope
+					enabled = False
+					state = Complete
+					values = 0,0,0,0,0
+					maxAlt = 70000
+					minAlt = 30000
+					useAltLimit = True
+					title = 
+				}
+			}
+			CONTRACT_FINISHED
+			{
+				guid = 60012929-ec76-4ba8-a7b6-d4ede1303faf
+				type = BTSMContractPayloadToKerbinOrbitBasic
+				prestige = 0
+				seed = -2863903
+				state = Completed
+				agent = Sean's Cannery
+				deadlineType = None
+				expiryType = None
+				values = 0,0,0,16222.4988126755,7874.99964237213,0,9.52381,10,0,34398.1361841532,0,0
+				payloadSize = 1
+				body = 1
+				PARAM
+				{
+					name = BTSMContractParameterPayloadDeliver
+					enabled = False
+					state = Complete
+					values = 0,0,0,0,0
+					payloadSet = True
+					PARAM
+					{
+						name = BTSMContractParameterPayloadOrbit
+						state = Complete
+						disableOnStateChange = False
+						values = 0,0,0,0,0
+						payloadSet = True
+						body = 1
+						PARAM
+						{
+							name = BTSMContractParameterPayloadLaunch
+							enabled = False
+							state = Complete
+							values = 0,0,0,0,0
+							payloadSet = True
+							payloadSize = 1
+						}
+					}
+				}
+			}
+		}
+	}
+	SCENARIO
+	{
+		name = Funding
+		scene = 7, 8, 5, 6
+		funds = 100000
+	}
+	SCENARIO
+	{
+		name = ProgressTracking
+		scene = 7, 8, 5
+		Progress
+		{
+			FirstLaunch
+			{
+				completed = 3197.1199999976
+			}
+			AltitudeRecord
+			{
+				completed = 203236.763550986
+				record = 70000
+			}
+			ReachedSpace
+			{
+				completed = 203236.763550986
+				vessel
+				{
+					name = 30t
+					flag = Squad/Flags/default
+				}
+			}
+			Kerbin
+			{
+				reached = 767.439999999597
+				Orbit
+				{
+					completed = 229045.694516432
+					vessel
+					{
+						name = Test
+						flag = Squad/Flags/default
+					}
+					crew
+					{
+						crews = Jebediah Kerman, Bill Kerman, Bob Kerman
+					}
+				}
+				Escape
+				{
+					completed = 24759.4282580552
+				}
+				Landing
+				{
+					completed = 767.439999999597
+					vessel
+					{
+						name = Untitled Space Craft Debris
+						flag = Squad/Flags/default
+					}
+				}
+			}
+			Mun
+			{
+				reached = 242780.563185534
+				Flyby
+				{
+					completed = 242780.563185534
+				}
+				Orbit
+				{
+					completed = 247318.357282123
+					vessel
+					{
+						name = Test
+						flag = Squad/Flags/default
+					}
+					crew
+					{
+						crews = Jebediah Kerman, Bill Kerman, Bob Kerman
+					}
+				}
+				Landing
+				{
+					completed = 248293.782286707
+					vessel
+					{
+						name = Test Lander
+						flag = Squad/Flags/default
+					}
+					crew
+					{
+						crews = Bill Kerman, Jebediah Kerman
+					}
+				}
+				SurfaceEVA
+				{
+					completed = 248306.102286701
+					crew
+					{
+						crews = Jebediah Kerman
+					}
+				}
+			}
+		}
+	}
+	SCENARIO
+	{
+		name = ResearchAndDevelopment
+		scene = 7, 8, 5, 6
+		sci = 560
+		Tech
+		{
+			id = start
+			state = Available
+			part = probeCoreSphere
+			part = longAntenna
+			part = sensorThermometer
+			part = BTSMSolidRocket1
+			part = MerillTestInstrumentation
+		}
+		Tech
+		{
+			id = basicRocketry
+			state = Available
+			part = BTSMBatteryPack1
+			part = BTSMSolidRocket2
+			part = sensorBarometer
+		}
+		Tech
+		{
+			id = generalRocketry
+			state = Available
+			part = BTSMLiquidEngine1
+			part = BTSMTechStubLaunchLimit1
+			part = fuelTank.long
+		}
+		Tech
+		{
+			id = advRocketry
+			state = Available
+			part = BTSMLiquidEngine3
+			part = fuelTank
+		}
+		Tech
+		{
+			id = stability
+			state = Available
+			part = BTSMTechStubMilitaryMissions
+			part = R8winglet
+			part = sensorGravimeter
+		}
+		Tech
+		{
+			id = generalConstruction
+			state = Available
+			part = BTSMTechStubCommercialPayload1
+			part = BTSMTechStubLaunchLimit2
+			part = trussAdapter
+			part = trussPiece1x
+			part = stackDecoupler
+			part = merillLargeStackDcoupler
+			part = launchClamp1
+		}
+		Tech
+		{
+			id = advConstruction
+			state = Available
+			part = BTSMTechStubCommercialPayload2
+			part = BTSMTechStubLaunchLimit3
+			part = strutConnector
+			part = adapterSmallMiniShort
+			part = trussPiece3x
+			part = largeAdapter2
+		}
+		Tech
+		{
+			id = fuelSystems
+			state = Available
+			part = liquidEngine
+			part = fuelTankSmall
+			part = adapterLargeSmallBi
+			part = adapterLargeSmallQuad
+			part = adapterLargeSmallTri
+			part = dockingPort2
+		}
+		Tech
+		{
+			id = survivability
+			state = Available
+			part = BTSMCockpit1
+			part = parachuteSingle
+		}
+		Tech
+		{
+			id = flightControl
+			state = Available
+			part = rcsTankMini
+			part = RCSBlock
+		}
+		Tech
+		{
+			id = scienceTech
+			state = Available
+			part = BTSMBatteryPack2
+			part = BTSMCockpit2
+			part = GooExperiment
+		}
+		Tech
+		{
+			id = spaceExploration
+			state = Available
+			part = mk1pod
+			part = ladder1
+		}
+		Tech
+		{
+			id = advFlightControl
+			state = Available
+			part = sasModule
+			part = probeCoreCube
+			part = RCSFuelTank
+		}
+		Tech
+		{
+			id = heavyRocketry
+			state = Available
+			part = solidBooster
+			part = fuelTank3-2
+			part = test3
+		}
+		Tech
+		{
+			id = landing
+			state = Available
+			part = BTSMRadarAltimeter
+			part = BTSMTechStubSpaceSuits
+			part = MerillMunMirror
+			part = miniLandingLeg
+			part = sensorAccelerometer
+			part = spotLight1
+		}
+		Tech
+		{
+			id = aerodynamicSystems
+			state = Available
+			part = BTSMAircraftLandingGear
+			part = BTSMDragticle
+			part = BTSMTechStubHeatshieldIntegrated
+			part = BTSMTechStubMilitaryBombs
+			part = BTSMWinglet1
+			part = 1.25.Heatshield
+			part = noseCone
+			part = sweptWing
+			part = JetEngine
+			part = MK1Fuselage
+			part = airScoop
+			part = StandardCtrlSrf
+		}
+		Tech
+		{
+			id = electrics
+			state = Available
+			part = mediumDishAntenna
+		}
+		Science
+		{
+			id = temperatureScan@KerbinSrfLanded
+			title = Temperature Scan from Kerbin's surface
+			dsc = 0.5
+			scv = 0
+			sbv = 1E-09
+			sci = 8E-09
+			cap = 8E-09
+		}
+		Science
+		{
+			id = temperatureScan@KerbinFlyingLow
+			title = Temperature Scan while flying at Kerbin
+			dsc = 0.5
+			scv = 0
+			sbv = 0.5
+			sci = 4
+			cap = 4
+		}
+		Science
+		{
+			id = barometerScan@KerbinFlyingLow
+			title = Atmospheric Pressure Scan while flying at Kerbin
+			dsc = 0.5
+			scv = 0
+			sbv = 0.5
+			sci = 8
+			cap = 8
+		}
+		Science
+		{
+			id = temperatureScan@KerbinFlyingHigh
+			title = Temperature Scan from Kerbin's upper atmosphere
+			dsc = 0.5
+			scv = 0
+			sbv = 0.5
+			sci = 4
+			cap = 4
+		}
+		Science
+		{
+			id = barometerScan@KerbinFlyingHigh
+			title = Atmospheric Pressure Scan from Kerbin's upper atmosphere
+			dsc = 0.5
+			scv = 0
+			sbv = 0.5
+			sci = 8
+			cap = 8
+		}
+		Science
+		{
+			id = temperatureScan@KerbinInSpaceLow
+			title = Temperature Scan while in space near Kerbin
+			dsc = 0.5
+			scv = 0
+			sbv = 1
+			sci = 8
+			cap = 8
+		}
+		Science
+		{
+			id = barometerScan@KerbinInSpaceLow
+			title = Atmospheric Pressure Scan while in space near Kerbin
+			dsc = 0.5
+			scv = 0
+			sbv = 1
+			sci = 16
+			cap = 16
+		}
+		Science
+		{
+			id = gravityScan@KerbinInSpaceLowHighlands
+			title = Gravity Scan from space just above Kerbin's Highlands
+			dsc = 2
+			scv = 0
+			sbv = 1
+			sci = 25
+			cap = 25
+		}
+		Science
+		{
+			id = gravityScan@KerbinInSpaceLowShores
+			title = Gravity Scan from space just above Kerbin's Shores
+			dsc = 2
+			scv = 0
+			sbv = 1
+			sci = 25
+			cap = 25
+		}
+		Science
+		{
+			id = gravityScan@KerbinInSpaceLowWater
+			title = Gravity Scan from space just above Kerbin's Water
+			dsc = 2
+			scv = 0
+			sbv = 1
+			sci = 25
+			cap = 25
+		}
+		Science
+		{
+			id = temperatureScan@KerbinInSpaceHigh
+			title = Temperature Scan while in space high over Kerbin
+			dsc = 0.5
+			scv = 0
+			sbv = 1
+			sci = 8
+			cap = 8
+		}
+		Science
+		{
+			id = gravityScan@KerbinInSpaceLowGrasslands
+			title = Gravity Scan from space just above Kerbin's Grasslands
+			dsc = 2
+			scv = 0
+			sbv = 1
+			sci = 25
+			cap = 25
+		}
+		Science
+		{
+			id = gravityScan@KerbinInSpaceLowTundra
+			title = Gravity Scan from space just above Kerbin's Tundra
+			dsc = 2
+			scv = 0
+			sbv = 1
+			sci = 25
+			cap = 25
+		}
+		Science
+		{
+			id = gravityScan@KerbinInSpaceLowIceCaps
+			title = Gravity Scan from space just above Kerbin's Ice Caps
+			dsc = 2
+			scv = 0
+			sbv = 1
+			sci = 25
+			cap = 25
+		}
+		Science
+		{
+			id = gravityScan@KerbinInSpaceLowMountains
+			title = Gravity Scan from space just above Kerbin's Mountains
+			dsc = 2
+			scv = 0.02
+			sbv = 1
+			sci = 24.5
+			cap = 25
+		}
+		Science
+		{
+			id = mysteryGoo@KerbinSrfLanded
+			title = Expose Mystery Goo? from Kerbin's surface
+			dsc = 5
+			scv = 1
+			sbv = 1E-09
+			sci = 0
+			cap = 5E-08
+		}
+		Science
+		{
+			id = mysteryGoo@KerbinFlyingHigh
+			title = Expose Mystery Goo? from Kerbin's upper atmosphere
+			dsc = 5
+			scv = 0
+			sbv = 0.5
+			sci = 25
+			cap = 25
+		}
+		Science
+		{
+			id = mysteryGoo@KerbinFlyingLow
+			title = Expose Mystery Goo? while flying at Kerbin
+			dsc = 5
+			scv = 0
+			sbv = 0.5
+			sci = 25
+			cap = 25
+		}
+		Science
+		{
+			id = mysteryGoo@KerbinInSpaceLow
+			title = Expose Mystery Goo? while in space near Kerbin
+			dsc = 5
+			scv = 0
+			sbv = 1
+			sci = 50
+			cap = 50
+		}
+		Science
+		{
+			id = crewReport@KerbinFlyingLow
+			title = Crew Report while flying at Kerbin
+			dsc = 4
+			scv = 0
+			sbv = 0.5
+			sci = 15
+			cap = 15
+		}
+		Science
+		{
+			id = crewReport@KerbinFlyingHigh
+			title = Crew Report from Kerbin's upper atmosphere
+			dsc = 4
+			scv = 0
+			sbv = 0.5
+			sci = 15
+			cap = 15
+		}
+		Science
+		{
+			id = crewReport@KerbinInSpaceLowWater
+			title = Crew Report from space just above Kerbin's Water
+			dsc = 4
+			scv = 0
+			sbv = 1
+			sci = 30
+			cap = 30
+		}
+		Science
+		{
+			id = mysteryGoo@KerbinInSpaceHigh
+			title = Expose Mystery Goo? while in space high over Kerbin
+			dsc = 5
+			scv = 0
+			sbv = 1
+			sci = 50
+			cap = 50
+		}
+		Science
+		{
+			id = crewReport@KerbinInSpaceLowHighlands
+			title = Crew Report from space just above Kerbin's Highlands
+			dsc = 4
+			scv = 0
+			sbv = 1
+			sci = 30
+			cap = 30
+		}
+		Science
+		{
+			id = crewReport@KerbinInSpaceLowGrasslands
+			title = Crew Report from space just above Kerbin's Grasslands
+			dsc = 4
+			scv = 0
+			sbv = 1
+			sci = 30
+			cap = 30
+		}
+		Science
+		{
+			id = crewReport@KerbinInSpaceLowShores
+			title = Crew Report from space just above Kerbin's Shores
+			dsc = 4
+			scv = 0
+			sbv = 1
+			sci = 30
+			cap = 30
+		}
+		Science
+		{
+			id = crewReport@KerbinInSpaceLowIceCaps
+			title = Crew Report from space just above Kerbin's Ice Caps
+			dsc = 4
+			scv = 0
+			sbv = 1
+			sci = 30
+			cap = 30
+		}
+		Science
+		{
+			id = crewReport@KerbinInSpaceLowTundra
+			title = Crew Report from space just above Kerbin's Tundra
+			dsc = 4
+			scv = 0
+			sbv = 1
+			sci = 30
+			cap = 30
+		}
+		Science
+		{
+			id = crewReport@KerbinInSpaceLowMountains
+			title = Crew Report from space just above Kerbin's Mountains
+			dsc = 4
+			scv = 0
+			sbv = 1
+			sci = 30
+			cap = 30
+		}
+		Science
+		{
+			id = gravityScan@KerbinInSpaceLowBadlands
+			title = Gravity Scan from space just above Kerbin's Badlands
+			dsc = 2
+			scv = 0
+			sbv = 1
+			sci = 25
+			cap = 25
+		}
+		Science
+		{
+			id = crewReport@KerbinInSpaceLowBadlands
+			title = Crew Report from space just above Kerbin's Badlands
+			dsc = 4
+			scv = 0
+			sbv = 1
+			sci = 30
+			cap = 30
+		}
+		Science
+		{
+			id = gravityScan@KerbinInSpaceLowDeserts
+			title = Gravity Scan from space just above Kerbin's Deserts
+			dsc = 2
+			scv = 0
+			sbv = 1
+			sci = 25
+			cap = 25
+		}
+		Science
+		{
+			id = crewReport@KerbinInSpaceLowDeserts
+			title = Crew Report from space just above Kerbin's Deserts
+			dsc = 4
+			scv = 0
+			sbv = 1
+			sci = 30
+			cap = 30
+		}
+		Science
+		{
+			id = gravityScan@MunInSpaceLowHighlands
+			title = Gravity Scan from space just above the Mun's Highlands
+			dsc = 2
+			scv = 0
+			sbv = 1
+			sci = 25
+			cap = 25
+		}
+		Science
+		{
+			id = gravityScan@MunInSpaceLowMidlands
+			title = Gravity Scan from space just above the Mun's Midlands
+			dsc = 2
+			scv = 0
+			sbv = 1
+			sci = 25
+			cap = 25
+		}
+		Science
+		{
+			id = gravityScan@MunInSpaceLowNorthwestCrater
+			title = Gravity Scan from space just above the Mun's Northwest Crater
+			dsc = 2
+			scv = 0
+			sbv = 1
+			sci = 25
+			cap = 25
+		}
+		Science
+		{
+			id = gravityScan@MunInSpaceLowMidlandCraters
+			title = Gravity Scan from space just above the Mun's Midland Craters
+			dsc = 2
+			scv = 0
+			sbv = 1
+			sci = 25
+			cap = 25
+		}
+		Science
+		{
+			id = gravityScan@MunInSpaceLowHighlandCraters
+			title = Gravity Scan from space just above the Mun's Highland Craters
+			dsc = 2
+			scv = 0
+			sbv = 1
+			sci = 25
+			cap = 25
+		}
+		Science
+		{
+			id = gravityScan@MunInSpaceLowSouthwestCrater
+			title = Gravity Scan from space just above the Mun's Southwest Crater
+			dsc = 2
+			scv = 0
+			sbv = 1
+			sci = 25
+			cap = 25
+		}
+		Science
+		{
+			id = gravityScan@MunInSpaceLowTwinCraters
+			title = Gravity Scan from space just above the Mun's Twin Craters
+			dsc = 2
+			scv = 0
+			sbv = 1
+			sci = 25
+			cap = 25
+		}
+		Science
+		{
+			id = gravityScan@MunInSpaceLowNorthernBasin
+			title = Gravity Scan from space just above the Mun's Northern Basin
+			dsc = 2
+			scv = 0
+			sbv = 1
+			sci = 25
+			cap = 25
+		}
+		Science
+		{
+			id = crewReport@MunInSpaceLowMidlands
+			title = Crew Report from space just above the Mun's Midlands
+			dsc = 4
+			scv = 0
+			sbv = 1
+			sci = 30
+			cap = 30
+		}
+		Science
+		{
+			id = crewReport@MunInSpaceLowNorthwestCrater
+			title = Crew Report from space just above the Mun's Northwest Crater
+			dsc = 4
+			scv = 0
+			sbv = 1
+			sci = 30
+			cap = 30
+		}
+		Science
+		{
+			id = crewReport@MunInSpaceLowMidlandCraters
+			title = Crew Report from space just above the Mun's Midland Craters
+			dsc = 4
+			scv = 0
+			sbv = 1
+			sci = 30
+			cap = 30
+		}
+		Science
+		{
+			id = crewReport@MunInSpaceLowHighlands
+			title = Crew Report from space just above the Mun's Highlands
+			dsc = 4
+			scv = 0
+			sbv = 1
+			sci = 30
+			cap = 30
+		}
+		Science
+		{
+			id = crewReport@MunInSpaceLowPoles
+			title = Crew Report from space just above the Mun's Poles
+			dsc = 4
+			scv = 0
+			sbv = 1
+			sci = 30
+			cap = 30
+		}
+		Science
+		{
+			id = crewReport@MunInSpaceLowPolarCrater
+			title = Crew Report from space just above the Mun's Polar Crater
+			dsc = 4
+			scv = 0
+			sbv = 1
+			sci = 30
+			cap = 30
+		}
+		Science
+		{
+			id = crewReport@MunInSpaceLowSouthwestCrater
+			title = Crew Report from space just above the Mun's Southwest Crater
+			dsc = 4
+			scv = 0
+			sbv = 1
+			sci = 30
+			cap = 30
+		}
+		Science
+		{
+			id = crewReport@MunInSpaceLowHighlandCraters
+			title = Crew Report from space just above the Mun's Highland Craters
+			dsc = 4
+			scv = 0
+			sbv = 1
+			sci = 30
+			cap = 30
+		}
+		Science
+		{
+			id = crewReport@MunInSpaceLowTwinCraters
+			title = Crew Report from space just above the Mun's Twin Craters
+			dsc = 4
+			scv = 0
+			sbv = 1
+			sci = 30
+			cap = 30
+		}
+		Science
+		{
+			id = crewReport@MunInSpaceLowEastCrater
+			title = Crew Report from space just above the Mun's East Crater
+			dsc = 4
+			scv = 0
+			sbv = 1
+			sci = 30
+			cap = 30
+		}
+		Science
+		{
+			id = crewReport@MunInSpaceLowPolarLowlands
+			title = Crew Report from space just above the Mun's Polar Lowlands
+			dsc = 4
+			scv = 0
+			sbv = 1
+			sci = 30
+			cap = 30
+		}
+		Science
+		{
+			id = crewReport@MunInSpaceLowCanyons
+			title = Crew Report from space just above the Mun's Canyons
+			dsc = 4
+			scv = 0
+			sbv = 1
+			sci = 30
+			cap = 30
+		}
+		Science
+		{
+			id = crewReport@MunInSpaceLowNorthernBasin
+			title = Crew Report from space just above the Mun's Northern Basin
+			dsc = 4
+			scv = 0
+			sbv = 1
+			sci = 30
+			cap = 30
+		}
+		Science
+		{
+			id = seismicScan@MunSrfLanded
+			title = Seismic Scan from the Mun's surface
+			dsc = 3.5
+			scv = 0
+			sbv = 3
+			sci = 300
+			cap = 300
+		}
+	}
+	SCENARIO
+	{
+		name = VesselRecovery
+		scene = 5, 7, 8, 6
+	}
+	SCENARIO
+	{
+		name = Reputation
+		scene = 7, 8, 5, 6
+		rep = 301
+	}
+	SCENARIO
+	{
+		name = StrategySystem
+		scene = 7, 8, 5, 6
+		STRATEGIES
+		{
+		}
+	}
+	SCENARIO
+	{
+		name = ScenarioDestructibles
+		scene = 5, 7, 6, 8
+		SpaceCenter/Administration/Facility/mainBuilding
+		{
+			intact = True
+		}
+		SpaceCenter/AstronautComplex/Facility/building
+		{
+			intact = True
+		}
+		SpaceCenter/LaunchPad/Facility/LaunchPadMedium/KSCFlagPoleLaunchPad
+		{
+			intact = True
+		}
+		SpaceCenter/LaunchPad/Facility/LaunchPadMedium/ksp_pad_waterTower
+		{
+			intact = True
+		}
+		SpaceCenter/LaunchPad/Facility/LaunchPadMedium/ksp_pad_sphereTank
+		{
+			intact = True
+		}
+		SpaceCenter/LaunchPad/Facility/LaunchPadMedium/ksp_pad_launchPad
+		{
+			intact = True
+		}
+		SpaceCenter/LaunchPad/Facility/LaunchPadMedium/ksp_pad_cylTank
+		{
+			intact = True
+		}
+		SpaceCenter/MissionControl/Facility/building
+		{
+			intact = True
+		}
+		SpaceCenter/ResearchAndDevelopment/Facility/SideLab
+		{
+			intact = True
+		}
+		SpaceCenter/ResearchAndDevelopment/Facility/Observatory
+		{
+			intact = True
+		}
+		SpaceCenter/ResearchAndDevelopment/Facility/WindTunnel
+		{
+			intact = True
+		}
+		SpaceCenter/ResearchAndDevelopment/Facility/CornerLab
+		{
+			intact = True
+		}
+		SpaceCenter/ResearchAndDevelopment/Facility/MainBuilding
+		{
+			intact = True
+		}
+		SpaceCenter/ResearchAndDevelopment/Facility/CentralBuilding
+		{
+			intact = True
+		}
+		SpaceCenter/ResearchAndDevelopment/Facility/SmallLab
+		{
+			intact = True
+		}
+		SpaceCenter/ResearchAndDevelopment/Facility/ksp_pad_cylTank
+		{
+			intact = True
+		}
+		SpaceCenter/Runway/Facility/Section4
+		{
+			intact = True
+		}
+		SpaceCenter/Runway/Facility/Section3
+		{
+			intact = True
+		}
+		SpaceCenter/Runway/Facility/Section2
+		{
+			intact = True
+		}
+		SpaceCenter/Runway/Facility/Section1
+		{
+			intact = True
+		}
+		SpaceCenter/Runway/Facility/End27
+		{
+			intact = True
+		}
+		SpaceCenter/Runway/Facility/End09
+		{
+			intact = True
+		}
+		SpaceCenter/Runway/Facility/model_runway_new_v43/runway_light_SW
+		{
+			intact = True
+		}
+		SpaceCenter/Runway/Facility/model_runway_new_v43/runway_light_NW
+		{
+			intact = True
+		}
+		SpaceCenter/Runway/Facility/model_runway_new_v43/runway_light_NE
+		{
+			intact = True
+		}
+		SpaceCenter/Runway/Facility/model_runway_new_v43/runway_light_SE
+		{
+			intact = True
+		}
+		SpaceCenter/SpaceplaneHangar/Facility/mainBuilding
+		{
+			intact = True
+		}
+		SpaceCenter/SpaceplaneHangar/Facility/ksp_pad_waterTower
+		{
+			intact = True
+		}
+		SpaceCenter/SpaceplaneHangar/Facility/ksp_pad_cylTank
+		{
+			intact = True
+		}
+		SpaceCenter/SpaceplaneHangar/Facility/Tank
+		{
+			intact = True
+		}
+		SpaceCenter/TrackingStation/Facility/MainBuilding
+		{
+			intact = True
+		}
+		SpaceCenter/TrackingStation/Facility/dish_array/dish_east
+		{
+			intact = True
+		}
+		SpaceCenter/TrackingStation/Facility/dish_array/dish_north
+		{
+			intact = True
+		}
+		SpaceCenter/TrackingStation/Facility/dish_array/dish_south
+		{
+			intact = True
+		}
+		SpaceCenter/VehicleAssemblyBuilding/Facility/PodMemorial
+		{
+			intact = True
+		}
+		SpaceCenter/VehicleAssemblyBuilding/Facility/mainBuilding
+		{
+			intact = True
+		}
+		SpaceCenter/VehicleAssemblyBuilding/Facility/Tank
+		{
+			intact = True
+		}
+		SpaceCenter/VehicleAssemblyBuilding/Facility/ksp_pad_cylTank
+		{
+			intact = True
+		}
+		SpaceCenter/FlagPole/Facility
+		{
+			intact = True
+		}
+		SpaceCenter/VehicleAssemblyBuilding/Facility/VAB2
+		{
+			intact = True
+		}
+		SpaceCenter/TrackingStation/Facility/building
+		{
+			intact = True
+		}
+		SpaceCenter/TrackingStation/Facility/OuterDish
+		{
+			intact = True
+		}
+		SpaceCenter/SpaceplaneHangar/Facility/Building
+		{
+			intact = True
+		}
+		SpaceCenter/ResearchAndDevelopment/Facility/mainBuilding
+		{
+			intact = True
+		}
+		SpaceCenter/ResearchAndDevelopment/Facility/ForeverAlone
+		{
+			intact = True
+		}
+		SpaceCenter/MissionControl/Facility/mainBuilding
+		{
+			intact = True
+		}
+		SpaceCenter/LaunchPad/Facility/Flag
+		{
+			intact = True
+		}
+		SpaceCenter/AstronautComplex/Facility/mainBuilding
+		{
+			intact = True
+		}
+		SpaceCenter/Administration/Facility/Building
+		{
+			intact = True
+		}
+		SpaceCenter/TrackingStation/Facility/building/Antenna_South
+		{
+			intact = True
+		}
+		SpaceCenter/TrackingStation/Facility/building/Antenna_North
+		{
+			intact = True
+		}
+		SpaceCenter/TrackingStation/Facility/building/Antenna_East
+		{
+			intact = True
+		}
+		SpaceCenter/TrackingStation/Facility/building/Building
+		{
+			intact = True
+		}
+		SpaceCenter/Runway/Facility/Section5
+		{
+			intact = True
+		}
+		SpaceCenter/MissionControl/Facility/Antenna
+		{
+			intact = True
+		}
+	}
+	SCENARIO
+	{
+		name = ScenarioDiscoverableObjects
+		scene = 7, 8, 5
+		 = 1494524034
+		sizeCurve
+		{
+			key = 0 0 1.5 1.5
+			key = 0.3 0.45 0.875 0.875
+			key = 0.7 0.55 0.875 0.875
+			key = 1 1 1.5 1.5
+		}
+	}
+	SCENARIO
+	{
+		name = ScenarioUpgradeableFacilities
+		scene = 5, 6, 7, 8
+		SpaceCenter/LaunchPad
+		{
+			lvl = 1
+		}
+		SpaceCenter/Runway
+		{
+			lvl = 1
+		}
+		SpaceCenter/VehicleAssemblyBuilding
+		{
+			lvl = 1
+		}
+		SpaceCenter/SpaceplaneHangar
+		{
+			lvl = 1
+		}
+		SpaceCenter/TrackingStation
+		{
+			lvl = 1
+		}
+		SpaceCenter/AstronautComplex
+		{
+			lvl = 1
+		}
+		SpaceCenter/MissionControl
+		{
+			lvl = 1
+		}
+		SpaceCenter/ResearchAndDevelopment
+		{
+			lvl = 1
+		}
+		SpaceCenter/Administration
+		{
+			lvl = 1
+		}
+		SpaceCenter/FlagPole
+		{
+			lvl = 0
+		}
+	}
+	SCENARIO
+	{
+		name = MerillData
+		scene = 5, 7, 6, 8
+		nbPartDestroy = 10
+		nbPartTested = 30
+		notAleatCase = 0
+		partNameCrashed = parachuteSingleAtmo
+		partNameCrashed = stackDecouplerAtmo
+		partNameCrashed = BTSMLiquidEngine1StartAtmo
+		partNameCrashed = BTSMLiquidEngine1DurAtmo
+		partNameCrashed = BTSMLiquidEngine3StartAtmo
+		partNameCrashed = BTSMLiquidEngine3DurAtmo
+		partNameCrashed = BTSMSolidRocket1Atmo
+		partNameCrashed = BTSMSolidRocket1Vac
+		partNameCrashed = BTSMSolidRocket2Atmo
+		partNameCrashed = BTSMSolidRocket2Vac
+		partNameTested = parachuteSingleAtmo
+		partNameTested = stackDecouplerAtmo
+		partNameTested = BTSMLiquidEngine1StartAtmo
+		partNameTested = BTSMLiquidEngine1DurAtmo
+		partNameTested = BTSMLiquidEngine3StartAtmo
+		partNameTested = BTSMLiquidEngine3DurAtmo
+		partNameTested = BTSMSolidRocket1Atmo
+		partNameTested = BTSMSolidRocket1Vac
+		partNameTested = BTSMSolidRocket2Atmo
+		partNameTested = BTSMSolidRocket2Vac
+		maxNBSecBurn
+		{
+			BTSMSolidRocket1Atmo = 900
+			BTSMSolidRocket1Vac = 900
+			BTSMSolidRocket2Atmo = 900
+			BTSMSolidRocket2Vac = 900
+			BTSMLiquidEngine1Atmo = 900
+			BTSMLiquidEngine1Vac = 900
+			BTSMLiquidEngine3Atmo = 900
+			BTSMLiquidEngine3Vac = 900
+			BTSMLiquidEngine1-2Atmo = 900
+			BTSMLiquidEngine1-2Vac = 900
+			liquidEngine2-2Atmo = 900
+			liquidEngine2-2Vac = 900
+			liquidEngineAtmo = 900
+			liquidEngineVac = 900
+			liquidEngine3Atmo = 900
+			liquidEngine3Vac = 900
+			liquidEngine2Atmo = 900
+			liquidEngine2Vac = 900
+			omsEngineAtmo = 900
+			omsEngineVac = 900
+			MerillSmallRadialEngineExpAtmo = 900
+			MerillSmallRadialEngineExpVac = 900
+			MerillSmallRadialEngineExpStubAtmo = 900
+			MerillSmallRadialEngineExpStubVac = 900
+			liquidEngine1-2Atmo = 900
+			liquidEngine1-2Vac = 900
+			engineLargeSkipperAtmo = 900
+			engineLargeSkipperVac = 900
+		}
+		nbRestart
+		{
+			BTSMLiquidEngine1Atmo = 1
+			BTSMLiquidEngine1Vac = 1
+			BTSMLiquidEngine1-2Atmo = 1
+			BTSMLiquidEngine1-2Vac = 1
+			liquidEngine2-2Atmo = 3
+			liquidEngine2-2Vac = 3
+			liquidEngineAtmo = 1
+			liquidEngineVac = 1
+			liquidEngine3Atmo = 3
+			liquidEngine3Vac = 3
+			liquidEngine2Atmo = 3
+			liquidEngine2Vac = 3
+			BTSMLiquidEngine3Atmo = 1
+			BTSMLiquidEngine3Vac = 1
+			omsEngineAtmo = 1
+			omsEngineVac = 1
+			MerillSmallRadialEngineExpAtmo = 1
+			MerillSmallRadialEngineExpVac = 1
+			BTSMSolidRocket1Atmo = 1
+			BTSMSolidRocket1Vac = 1
+			BTSMSolidRocket2Atmo = 1
+			BTSMSolidRocket2Vac = 1
+			MerillSmallRadialEngineExpStubAtmo = 1
+			MerillSmallRadialEngineExpStubVac = 1
+			liquidEngine1-2Atmo = 1
+			liquidEngine1-2Vac = 1
+			engineLargeSkipperAtmo = 2
+			engineLargeSkipperVac = 2
+		}
+		notAleatIndex
+		{
+			test_liquidEngine = 21
+			test_BTSMLiquidEngine3 = 47
+			test_liquidEngine3 = 67
+			test_BTSMLiquidEngine1 = 4
+			test_MerillSmallRadialEngineExp = 53
+			science_MerillMunMirror = 3
+		}
+	}
+	SCENARIO
+	{
+		name = DeadlyReentryScenario
+		scene = 7, 5
+		difficultySetting = 1
+	}
+	SCENARIO
+	{
+		name = KerbalConstructionTimeData
+		scene = 7, 5, 6, 8
+		KCT_DataStorage
+		{
+			enabledForSave = True
+			RecoveryModifier = 0.75
+			NoCostSimulations = True
+			DisableBuildTime = False
+			InstantTechUnlock = False
+			EnableAllBodies = False
+			Reconditioning = True
+			fundsFromSimulation = 0
+			firstStart = True
+			TotalUpgradePoints = 30
+			TechUpgrades = 5
+			activeKSC = Stock
+			SimulationTime = 24
+			VABUpgrades
+			{
+				Item = 0
+			}
+			SPHUpgrades
+			{
+				Item = 0
+			}
+			RDUpgrades
+			{
+				Item = 0
+				Item = 0
+			}
+			PurchasedUpgrades
+			{
+				Item = 0
+				Item = 0
+			}
+			BodiesVisited
+			{
+				Item = Kerbin
+				Item = Mun
+			}
+			PartTracker
+			{
+				Item = probeCoreSphere
+				Item = 6
+				Item = probeCoreCube
+				Item = 8
+				Item = BTSMLiquidEngine1
+				Item = 15
+				Item = BTSMLiquidEngine3
+				Item = 10
+				Item = BTSMSolidRocket1
+				Item = 6
+				Item = BTSMSolidRocket2
+				Item = 6
+				Item = longAntenna
+				Item = 6
+				Item = sensorThermometer
+				Item = 6
+				Item = sensorGravimeter
+				Item = 6
+				Item = sensorBarometer
+				Item = 6
+				Item = MerillTestInstrumentation
+				Item = 20
+				Item = fuelTank.long
+				Item = 11
+				Item = stackDecoupler
+				Item = 11
+				Item = rcsTankMini
+				Item = 11
+				Item = RCSFuelTank
+				Item = 11
+				Item = mk1pod
+				Item = 1
+				Item = BTSMCockpit1
+				Item = 1
+				Item = BTSMCockpit2
+				Item = 1
+				Item = RCSBlock
+				Item = 11
+				Item = R8winglet
+				Item = 11
+				Item = parachuteSingle
+				Item = 1
+				Item = solidBooster
+				Item = 10
+				Item = fuelTank
+				Item = 10
+				Item = fuelTankSmall
+				Item = 10
+				Item = BTSMBatteryPack2
+				Item = 10
+				Item = BTSMBatteryPack1
+				Item = 10
+				Item = GooExperiment
+				Item = 5
+				Item = 1.25.Heatshield
+				Item = 5
+			}
+			PartInventory
+			{
+				Item = BTSMCockpit1
+				Item = 1
+				Item = BTSMCockpit2
+				Item = 1
+				Item = mk1pod
+				Item = 1
+				Item = BTSMLiquidEngine3
+				Item = 6
+				Item = BTSMSolidRocket2
+				Item = 20
+				Item = probeCoreSphere
+				Item = 1
+				Item = BTSMLiquidEngine1
+				Item = 20
+				Item = rcsTankMini
+				Item = 10
+				Item = solidBooster
+				Item = 10
+				Item = fuelTank
+				Item = 10
+				Item = BTSMBatteryPack2
+				Item = 10
+				Item = BTSMBatteryPack1
+				Item = 60
+				Item = BTSMLiquidEngine1-2
+				Item = 5
+			}
+		}
+		KSC
+		{
+			KSCName = Stock
+			VABUpgrades
+			{
+				Upgrade = 38
+				Upgrade = 0
+			}
+			SPHUpgrades
+			{
+				Upgrade = 0
+			}
+			RDUpgrades
+			{
+				Upgrade = 0
+				Upgrade = 5
+			}
+			VABList
+			{
+			}
+			SPHList
+			{
+			}
+			VABWarehouse
+			{
+			}
+			SPHWarehouse
+			{
+			}
+			KSCTech
+			{
+			}
+			Recon_Rollout
+			{
+			}
+		}
+		TechList
+		{
+		}
+	}
+	FLIGHTSTATE
+	{
+		version = 0.90.0
+		UT = 2.12
+		activeVessel = 0
+		mapViewFiltering = -1026
+	}
+	ROSTER
+	{
+		KERBAL
+		{
+			name = Jebediah Kerman
+			type = Crew
+			brave = 0.5
+			dumb = 0.5
+			badS = True
+			state = Available
+			ToD = 0
+			idx = -1
+			CAREER_LOG
+			{
+				flight = 0
+			}
+			FLIGHT_LOG
+			{
+				flight = 0
+			}
+		}
+		KERBAL
+		{
+			name = Bill Kerman
+			type = Crew
+			brave = 0.5
+			dumb = 0.8
+			badS = False
+			state = Available
+			ToD = 0
+			idx = -1
+			CAREER_LOG
+			{
+				flight = 0
+			}
+			FLIGHT_LOG
+			{
+				flight = 0
+			}
+		}
+		KERBAL
+		{
+			name = Bob Kerman
+			type = Crew
+			brave = 0.3
+			dumb = 0.1
+			badS = False
+			state = Available
+			ToD = 0
+			idx = -1
+			CAREER_LOG
+			{
+				flight = 0
+			}
+			FLIGHT_LOG
+			{
+				flight = 0
+			}
+		}
+	}
+	MESSAGESYSTEM
+	{
+		flash = False
+	}
+}
