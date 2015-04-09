@@ -27,7 +27,7 @@ namespace KspMerillEngineFail
 		[KSPEvent(guiActive = true, guiActiveEditor = false, guiName = "Shutdown")]
 		public void shutdownEvent()
 		{
-			print("[MERILL]consumeEnergy shutdown!" );
+			MerillData.log("consumeEnergy shutdown!" );
 			shutdownExperiment();
 		}
 
@@ -35,10 +35,10 @@ namespace KspMerillEngineFail
 		{
 			base.OnStart(state);
 
-			print("[MERILL]consumeEnergy start : " + part.name + " " + isRunning + ", " + consumptionPerSecond);
+			MerillData.log("consumeEnergy start : " + part.name + " " + isRunning + ", " + consumptionPerSecond);
 			if(!isRunning)
 			{
-				print("[MERILL]consumeEnergy shudown !");
+				MerillData.log("consumeEnergy shudown !");
 				shutdownExperiment();
 				energyConsumptionDisplay = "0 per s";
 			}
@@ -52,7 +52,7 @@ namespace KspMerillEngineFail
 
 		public virtual void FixedUpdate()
 		{
-			//print("[MERILL]consumeEnergy OnFixedUpdate : " + consumptionPerSecond +", "+ isRunning);
+			//MerillData.log("consumeEnergy OnFixedUpdate : " + consumptionPerSecond +", "+ isRunning);
 			if (consumptionPerSecond > 0 && isRunning)
 			{ 
 					//compute delta - using TimeWarp.fixedDeltaTime instead
@@ -92,21 +92,21 @@ namespace KspMerillEngineFail
 			//update others ui
 			foreach (PartModule pm in part.Modules)
 			{
-				print("[MERILL]consumeEnergy start, find module " + pm.moduleName);
+				MerillData.log("consumeEnergy start, find module " + pm.moduleName);
 
 				for (int i = 0; i < pm.Events.Count; i++)
 				{
 					if (pm.Events.GetByIndex(i) == null)
-						print("[MERILL]consumeEnergy see Events[" + i + "] is null");
+						MerillData.log("consumeEnergy see Events[" + i + "] is null");
 					else
-						print("[MERILL]consumeEnergy see event '" + pm.Events.GetByIndex(i).name + "'");
+						MerillData.log("consumeEnergy see event '" + pm.Events.GetByIndex(i).name + "'");
 				}
 				for (int i = 0; i < pm.Fields.Count; i++)
 				{
 					if (pm.Fields[i] == null)
-						print("[MERILL]consumeEnergy see field[" + i + "] is null");
+						MerillData.log("consumeEnergy see field[" + i + "] is null");
 					else
-					print("[MERILL]consumeEnergy see field '" + pm.Fields[i].name + "'");
+					MerillData.log("consumeEnergy see field '" + pm.Fields[i].name + "'");
 				}
 				//update my mod, you can add others below
 				if (pm.moduleName.Equals("MerillModuleScienceFail"))
@@ -117,10 +117,10 @@ namespace KspMerillEngineFail
 					{
 						merillScienceEvent.guiActive = false;
 						merillScienceEvent.active = false;
-						print("[MERILL]consumeEnergy check field '" + pm.Fields["stateDisplay"] + "'");
+						MerillData.log("consumeEnergy check field '" + pm.Fields["stateDisplay"] + "'");
 						BaseField merillShowState = pm.Fields["stateDisplay"];
 						merillShowState.SetValue("Dead", merillShowState.host);
-						print("[MERILL]consumeEnergy field set '" + merillShowState.GetValue(merillShowState.host) + "'");
+						MerillData.log("consumeEnergy field set '" + merillShowState.GetValue(merillShowState.host) + "'");
 					}
 				}
 				//update toogle vanilla

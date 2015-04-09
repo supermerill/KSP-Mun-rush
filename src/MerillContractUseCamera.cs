@@ -22,7 +22,7 @@ namespace KspMerillEngineFail
 			//{
 			//	return false;
 			//}
-			//MerillData.print("[MERILL]camera mission generate");
+			//MerillData.log("camera mission generate");
 			
 			//TODO use/create 'KTV' (KerbalTV) 
 			if (Contracts.Agents.AgentList.Instance != null)
@@ -50,18 +50,19 @@ namespace KspMerillEngineFail
 				if(oldContract.body2Shoot == body2Shoot && oldContract.useKerbal)
 				{
 					alreadyHereKerbal = true;
-					MerillData.print("[MERILL]camera mission manned already done");
+					MerillData.log("camera mission manned already done / here");
 				}
 				if (oldContract.body2Shoot == body2Shoot && !oldContract.useKerbal)
 				{
 					alreadyHereProbe = true;
+					MerillData.log("camera mission probe already done / here");
 				}
 
 			}
 			//check if it's in available contract
 			if (!alreadyHereKerbal || !alreadyHereProbe)
 			{
-				//MerillData.print("[MERILL]camera mission generated? " + ContractSystem.Instance.Contracts.Count);
+				//MerillData.log("camera mission generated? " + ContractSystem.Instance.Contracts.Count);
 				foreach ( Contract tempContract in ContractSystem.Instance.Contracts )
 				{
 					if (tempContract is MerillContractUseCamera)
@@ -69,13 +70,13 @@ namespace KspMerillEngineFail
 						if (((MerillContractUseCamera)tempContract).body2Shoot == body2Shoot &&
 							((MerillContractUseCamera)tempContract).useKerbal)
 						{
-							//MerillData.print("[MERILL]camera mission generated? true! ");
+							MerillData.log("camera mission kerbal generated? true! ");
 							alreadyHereKerbal = true;
 						}
 						if (((MerillContractUseCamera)tempContract).body2Shoot == body2Shoot &&
 							!((MerillContractUseCamera)tempContract).useKerbal)
 						{
-							//MerillData.print("[MERILL]camera mission generated? true! ");
+							MerillData.log("camera mission probe generated? true! ");
 							alreadyHereProbe = true;
 						}
 					}
@@ -87,19 +88,20 @@ namespace KspMerillEngineFail
 				situationForShoot = ExperimentSituations.InSpaceLow;
 				useKerbal = true;
 				ContractParameter parameter = AddParameter(new MerillContractParameterCameraFooting(body2Shoot, situationForShoot, true));
-				//MerillData.print("[MERILL]camera mission generate manned "+GetTitle());
+				//MerillData.log("camera mission generate manned "+GetTitle());
+				parameter.SetReputation(20);
 				
 				//advance, reward, failure
 				//BTSM fly by mission:160k total needed: 200k
 				SetFunds(0, 30000, 0);
 
 				//reward, failure
-				SetReputation(20, 0);
+				SetReputation(0, 0);
 			}
 			else if (!alreadyHereProbe)
 			{
 				useKerbal = false;
-				//MerillData.print("[MERILL]camera mission generate unmanned");
+				//MerillData.log("camera mission generate unmanned");
 				//is highorbit?
 				//0 : none, 1= HO, 2=LO , 3 = landed
 				//int situation = 0;
@@ -133,15 +135,15 @@ namespace KspMerillEngineFail
 				//	//all are done
 				//	return false;
 				//}
-				////MerillData.print("[MERILL]camera mission generate UNmanned " + string.Format(GetTitle(), body2Shoot.name, situationForShoot.ToString()) );
+				////MerillData.log("camera mission generate UNmanned " + string.Format(GetTitle(), body2Shoot.name, situationForShoot.ToString()) );
 
 				////is already active?
 				//foreach (MerillContractUseCamera currentContract in ContractSystem.Instance.GetCurrentContracts<MerillContractUseCamera>())
 				//{
-				//	//MerillData.print("[MERILL]camera mission find current " + currentContract.useKerbal + ", " + currentContract.body2Shoot + ", " + currentContract.situationForShoot);
+				//	//MerillData.log("camera mission find current " + currentContract.useKerbal + ", " + currentContract.body2Shoot + ", " + currentContract.situationForShoot);
 				//	if (!currentContract.useKerbal && currentContract.body2Shoot == body2Shoot && currentContract.situationForShoot == situationForShoot)
 				//	{
-				//		//MerillData.print("[MERILL]camera mission return false");
+				//		//MerillData.log("camera mission return false");
 				//		return false;
 				//	}
 				//}
@@ -172,13 +174,14 @@ namespace KspMerillEngineFail
 			}
 			else
 			{
+				MerillData.log(" end generate camera: false");
 				return false;
 			}
 
 			//no science, use experiment for that (and if !=0, need to add "BTSM" at the begining of this class name)
 			SetScience(0);
 
-			//MerillData.print("[Merill] end generate");
+			MerillData.log(" end generate camera: true");
 			return true;
 		}
 
@@ -215,7 +218,7 @@ namespace KspMerillEngineFail
 		protected override void OnCompleted()
 		{
 			base.OnCompleted();
-			//MerillData.print("[MERILL]camera mission complete");
+			//MerillData.log("camera mission complete");
 			//add build point upgrade
 			if(ReputationCompletion > 0)
 				if (useKerbal) KerbalConstructionTime.KCT_GameStates.TotalUpgradePoints += (int)ReputationCompletion;
@@ -241,7 +244,7 @@ namespace KspMerillEngineFail
 		protected override string GetTitle()
 		{
 			return String.Format(MerillData.str_camera_title, this.body2Shoot.name)
-				+ (useKerbal ? String.Format(MerillData.str_camera_title_withkerbal, this.situationForShoot) : "") + ".";
+				+ (useKerbal ? String.Format(MerillData.str_camera_title_withkerbal, MerillData.situation2String(this.situationForShoot)) : "") + ".";
 			//return "Take footage of "+this.body2Shoot.name+" at "+this.situationForShoot+(useKerbal?" with a kerbal":"");
 		}
 
@@ -278,12 +281,12 @@ namespace KspMerillEngineFail
 
 		protected override void OnLoad(ConfigNode node)
 		{
-			//MerillData.print("[Merill] contract photo OnLoad ");
+			//MerillData.log(" contract photo OnLoad ");
 			base.OnLoad(node);
 			if (node.GetValue("body2Shoot") == "null")
 			{
 				body2Shoot = null;
-				//MerillData.print("[Merill] contract photo body null ");
+				//MerillData.log(" contract photo body null ");
 			}
 			else
 				body2Shoot = MerillUtil.getPlanet(node.GetValue("body2Shoot"));
@@ -295,7 +298,7 @@ namespace KspMerillEngineFail
 
 		protected override void OnSave(ConfigNode node)
 		{
-			//MerillData.print("[Merill] contract photo OnSave " + body2Shoot
+			//MerillData.log(" contract photo OnSave " + body2Shoot
 				//+ ", " + situationForShoot+" "+useKerbal);
 			//GameEvents.OnTechnologyResearched.Remove(refreshExperimentalParts);
 			base.OnSave(node);
@@ -304,7 +307,7 @@ namespace KspMerillEngineFail
 			else
 			{	
 				node.AddValue("body2Shoot", "null");
-				//MerillData.print("[Merill] contract photo body null (save) ");
+				//MerillData.log(" contract photo body null (save) ");
 			}
 			node.AddValue("situation", System.Enum.GetName(typeof(ExperimentSituations), situationForShoot));
             node.AddValue( "withKerbal", useKerbal?"true":"false" );

@@ -1,15 +1,15 @@
 GAME
 {
 	version = 0.90.0
-	Title = Mun Race (Normal)
-	Description = Participate to the mun race! Your prime minister want to be re-elected and you're his last hope.
+	Title = Mun Rush (Normal)
+	Description = Participate to the mun rush! Your prime minister want to be re-elected and you're his last hope.
 	linkURL = 
 	linkCaption = 
 	Mode = CAREER
 	Status = 1
 	scene = 5
 	editor = None
-	flag = Squad/Flags/default
+	flag = Squad/Flags/kerbal2
 	launchID = 117
 	PARAMETERS
 	{
@@ -239,7 +239,7 @@ GAME
 			{
 				guid = 9a8ffd33-f252-4718-bf44-20000dc1c1ea
 				type = MerillContractUseCamera
-				prestige = 0
+				prestige = 1
 				seed = -1914777429
 				state = Offered
 				agent = General secretary of Kerbin
@@ -253,7 +253,7 @@ GAME
 				{
 					name = MerillContractParameterCameraFooting
 					state = Incomplete
-					values = 30000,0,0,5,0
+					values = 35000,0,0,5,0
 					body = Mun
 					situation = InSpaceHigh
 					withKerbal = false
@@ -262,7 +262,7 @@ GAME
 				{
 					name = MerillContractParameterCameraFooting
 					state = Incomplete
-					values = 30000,0,0,5,0
+					values = 35000,0,0,5,0
 					body = Mun
 					situation = InSpaceLow
 					withKerbal = false
@@ -271,7 +271,7 @@ GAME
 				{
 					name = MerillContractParameterCameraFooting
 					state = Incomplete
-					values = 30000,0,0,10,0
+					values = 35000,0,0,10,0
 					body = Mun
 					situation = SrfLanded
 					withKerbal = false
@@ -293,14 +293,14 @@ GAME
 				{
 					name = EnterOrbit
 					state = Incomplete
-					values = 10000,0,0,50,0
+					values = 15000,0,0,50,0
 					body = 2
 				}
 				PARAM
 				{
 					name = CollectScience
 					state = Incomplete
-					values = 10000,0,0,25,0
+					values = 15000,0,0,25,0
 					body = 2
 					location = Space
 				}
@@ -308,14 +308,14 @@ GAME
 				{
 					name = LandOnBody
 					state = Incomplete
-					values = 10000,0,0,50,0
+					values = 15000,0,0,50,0
 					body = 2
 				}
 				PARAM
 				{
 					name = CollectScience
 					state = Incomplete
-					values = 10000,0,0,25,0
+					values = 15000,0,0,25,0
 					body = 2
 					location = Surface
 				}
@@ -330,7 +330,7 @@ GAME
 				agent = Kerbin World-Firsts Record-Keeping Society
 				deadlineType = None
 				expiryType = None
-				values = 0,0,0,150000,62500,0,221.84,94,0,0,0,0
+				values = 0,0,0,158898,62500,0,221.84,94,0,0,0,0
 				PARAM
 				{
 					name = BTSMContractParameterDesignatedKerbalRecover
@@ -361,7 +361,7 @@ GAME
 				agent = General secretary of Kerbin
 				deadlineType = None
 				expiryType = None
-				values = 0,0,0,30000,0,0,20,0,0,0,0,0
+				values = 0,0,0,30000,0,0,0,0,0,0,0,0
 				body2Shoot = Mun
 				situation = InSpaceLow
 				withKerbal = true
@@ -369,7 +369,7 @@ GAME
 				{
 					name = MerillContractParameterCameraFooting
 					state = Incomplete
-					values = 0,0,0,0,0
+					values = 0,0,0,20,0
 					body = Mun
 					situation = InSpaceLow
 					withKerbal = true
@@ -411,7 +411,7 @@ GAME
 				agent = General secretary of Kerbin
 				deadlineType = Fixed
 				expiryType = None
-				values = 0,97200,0,0,2499999,0,0,2499,0,0,97200,0
+				values = 0,86400,0,0,2499999,0,0,2499,0,0,86400,0
 				PARAM
 				{
 					name = MerillContractParameterSuccessContract
@@ -1648,7 +1648,7 @@ GAME
 	{
 		name = Reputation
 		scene = 7, 8, 5, 6
-		rep = 200
+		rep = 300
 	}
 	SCENARIO
 	{
@@ -1958,6 +1958,13 @@ GAME
 		partNameCrashed = BTSMSolidRocket1Vac
 		partNameCrashed = BTSMSolidRocket2Atmo
 		partNameCrashed = BTSMSolidRocket2Vac
+		partNameTested = stub0
+		partNameTested = stub1
+		partNameTested = stub2
+		partNameTested = stub3
+		partNameTested = stub4
+		partNameTested = stub5
+		partNameTested = stub6
 		partNameTested = parachuteSingleAtmo
 		partNameTested = stackDecouplerAtmo
 		partNameTested = BTSMLiquidEngine1StartAtmo

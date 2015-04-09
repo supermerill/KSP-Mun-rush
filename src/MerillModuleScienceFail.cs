@@ -9,10 +9,10 @@ namespace KspMerillEngineFail
 	public class MerillModuleScienceFail : PartModule
 	{
 
-		bool canBeTested = false;
-		BaseAction btsmScienceAction = null;
-		BaseEvent btsmScienceEvent = null;
-		ModuleScienceExperiment scienceExperiment;
+		protected bool canBeTested = false;
+		protected BaseAction btsmScienceAction = null;
+		protected BaseEvent btsmScienceEvent = null;
+		protected ModuleScienceExperiment scienceExperiment;
 
 
 		[KSPField(isPersistant = true, guiActive = true, guiActiveEditor = false, guiName = "State")]
@@ -31,10 +31,10 @@ namespace KspMerillEngineFail
 			}
 
 			// FindObjectOfType the BTSM science module
-			print("[MERILL]SCIENCE! start, search in module "+part.Modules.Count);
+			MerillData.log("SCIENCE! start, search in module " + part.Modules.Count);
 			foreach (PartModule pm in part.Modules)
 			{
-				print("[MERILL]SCIENCE! start, find module " + pm.moduleName);
+				//MerillData.log("SCIENCE! start, find module " + pm.moduleName);
 				if (pm.moduleName.Equals("BTSMModuleScienceExperiment"))
 				{
 					scienceExperiment = (ModuleScienceExperiment)pm;
@@ -42,8 +42,8 @@ namespace KspMerillEngineFail
 					btsmScienceAction = pm.Actions["BTSMDeployExperimentAction"];
 					BaseEvent merillScienceEvent = Events["MERILLScienceEventDeployOrTest"];
 					BaseAction merillScienceAction = Actions["MERILLScienceActionDeployOrTest"];
-					print("[merill]science! start, find evenat&action '" + btsmScienceEvent + "', '" + btsmScienceAction + "'");
-					print("[merill]science! start, find evenat&action '" + merillScienceEvent + "', '" + merillScienceAction + "'");
+					//MerillData.log("science! start, find evenat&action '" + btsmScienceEvent + "', '" + btsmScienceAction + "'");
+					//MerillData.log("science! start, find evenat&action '" + merillScienceEvent + "', '" + merillScienceAction + "'");
 					if (merillScienceEvent != null && merillScienceAction != null)
 					{
 						if (isInactive)
@@ -59,7 +59,7 @@ namespace KspMerillEngineFail
 							btsmScienceAction.active = false;
 							merillScienceEvent.guiName = btsmScienceEvent.guiName;
 							merillScienceAction.guiName = btsmScienceAction.guiName;
-							print("[merill]science! start, merillScienceEvent.name= '" + merillScienceEvent.guiName + "'");
+							//MerillData.log("science! start, merillScienceEvent.name= '" + merillScienceEvent.guiName + "'");
 						}
 					}
 				}
@@ -71,7 +71,7 @@ namespace KspMerillEngineFail
 		[KSPEvent(guiName = "Deploy Experiment", guiActive = true, guiActiveEditor = false)]
 		public void MERILLScienceEventDeployOrTest()
 		{
-			print("[MERILL]SCIENCE! scienceDeployOrTest '" + btsmScienceEvent+"'");
+			//MerillData.log("SCIENCE! scienceDeployOrTest '" + btsmScienceEvent+"'");
 			doScienceEvent();
 		}
 
@@ -79,16 +79,16 @@ namespace KspMerillEngineFail
 		{
 			if (canBeTested && btsmScienceEvent != null && isInstrumentOk())
 			{
-				print("[MERILL]SCIENCE! scienceDeployOrTest invoke");
+				//MerillData.log("SCIENCE! scienceDeployOrTest invoke");
 				btsmScienceEvent.Invoke();
-				print("[MERILL]SCIENCE! scienceDeployOrTest invoke done");
+				//MerillData.log("SCIENCE! scienceDeployOrTest invoke done");
 			}
 		}
 
 		[KSPAction("Deploy Experiment")]
 		public void MERILLScienceActionDeployOrTest(KSPActionParam param)
 		{
-			print("[MERILL]SCIENCE! scienceAction "+canBeTested+" '" + btsmScienceAction+ "'");
+			//MerillData.log("SCIENCE! scienceAction "+canBeTested+" '" + btsmScienceAction+ "'");
 			doScienceAction();
 		}
 
@@ -96,23 +96,23 @@ namespace KspMerillEngineFail
 		{
 			if (canBeTested && btsmScienceAction != null && isInstrumentOk())
 			{
-			print("[MERILL]SCIENCE! scienceAction invoke done");
-			btsmScienceAction.Invoke(new KSPActionParam(KSPActionGroup.None, KSPActionType.Activate));
-			print("[MERILL]SCIENCE! scienceAction invoke done");
+				//MerillData.log("SCIENCE! scienceAction invoke done");
+				btsmScienceAction.Invoke(new KSPActionParam(KSPActionGroup.None, KSPActionType.Activate));
+				//MerillData.log("SCIENCE! scienceAction invoke done");
 			}
 		}
 
 		protected bool isInstrumentOk()
 		{
-			print("[MERILL]SCIENCE! isInstrumentOk isInactive="+isInactive+" for part "+part.name);
+			//MerillData.log("SCIENCE! isInstrumentOk isInactive="+isInactive+" for part "+part.name);
 			if(isInactive) return false;
 
 			float chance = 15 + 40f / ((((float)MerillData.instance.partNameTested.Count) / 8f) + 1);
 
 			// luck?
-			int peudoAleat = MerillData.instance.get0to99FromNotAleatTable("science_"+part.name);
+			int peudoAleat = MerillData.instance.get0to99FromNotAleatTable("science_"+part.name+"_vessel_"+part.vessel.id.ToString());
 
-			print("[Merill] test: " + peudoAleat + " ?> " + chance);
+			print("[MERILL][Mun Rush] experiment " + part.name + " self-testing : " + peudoAleat + " ?> " + chance);
 
 			isInactive = peudoAleat < chance;
 
@@ -124,7 +124,7 @@ namespace KspMerillEngineFail
 				stateDisplay = "Dead";
 				if (scienceExperiment != null)
 				{
-					print("[MERILL]sciecnefail set to inoperable");
+					//MerillData.log("sciecnefail set to inoperable");
 					scienceExperiment.SetInoperable();
 				}
 				//emit message

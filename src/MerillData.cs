@@ -93,6 +93,9 @@ namespace KspMerillEngineFail
 		static int fib1 = 1;
 		static int fib2 = 87679;
 
+		[KSPField(isPersistant = true)]
+		public bool isDebugMode = false;
+
 
 		// ******  common part test ******
 
@@ -133,6 +136,7 @@ namespace KspMerillEngineFail
 				GameEvents.Contract.onContractsLoaded.Add(new EventVoid.OnEvent(removeBoringBTSMContract));
 
 				instance = this;
+
 			}
 			else
 			{
@@ -143,6 +147,14 @@ namespace KspMerillEngineFail
 		}
 
 
+		public static void log(string msg)
+		{
+			if (instance != null && instance.isDebugMode)
+			{
+				print("[MERILL]" + msg);
+			}
+		}
+
 		public void removeBoringBTSMContract()
 		{
 			Type toDel = null;
@@ -151,8 +163,7 @@ namespace KspMerillEngineFail
 				if (contractT.Name.Equals("BTSMContractPartTest"))
 				{
 					toDel = contractT;
-					break;
-				}
+				} 
 			}
 			if (toDel != null)
 			{
@@ -332,6 +343,44 @@ namespace KspMerillEngineFail
 			}
 			return retVal;
 		}
+		
+		//not used
+		public int get0to99FromNotAleatTable(string groupId, string vesselGuid)
+		{
+			//get groupid hash
+			if (!notAleatIndex.ContainsKey(groupId))
+			{
+				//init to random
+				notAleatIndex[groupId] = get0to99FromNotAleatTable();
+			}
+			//get vessel hash
+			if (!notAleatIndex.ContainsKey(vesselGuid))
+			{
+				//init to groupId+1
+				notAleatIndex[vesselGuid] = notAleatIndex[groupId];
+				notAleatIndex[groupId]++;
+				if (notAleatIndex[groupId] >= 100)
+				{
+					notAleatIndex[groupId] = 0;
+				}
+			}
+
+			int retVal = arrayNotAleat[notAleatIndex[vesselGuid] % 100];
+			notAleatIndex[vesselGuid]++;
+			if (notAleatIndex[vesselGuid] >= 100)
+			{
+				notAleatIndex[vesselGuid] = 0;
+			}
+			//also add here, to push other vessels outer me.
+			notAleatIndex[groupId]++;
+			if (notAleatIndex[groupId] >= 100)
+			{
+				notAleatIndex[groupId] = 0;
+			}
+			
+			return retVal;
+		}
+
 		public static void generateAnotherNotAleatTable()
 		{
 			List<int> allpick = new List<int>();
@@ -393,9 +442,9 @@ namespace KspMerillEngineFail
 		{
 			switch (situation)
 			{
-				case ExperimentSituations.FlyingLow:
+				case ExperimentSituations.InSpaceLow:
 					return str_space_low;
-				case ExperimentSituations.FlyingHigh:
+				case ExperimentSituations.InSpaceHigh:
 					return str_space_high;
 				case ExperimentSituations.SrfLanded:
 					return str_landed;
@@ -414,7 +463,7 @@ namespace KspMerillEngineFail
 		static public string str_agent_secretary = "The Secretary General of Kerbin";
 		static public string str_munm_title = "Plant a flag on the Mun! For the glory of kerbalkind!";
 		static public string str_munm_descr = "The Secretary General wants you on the Mun to ensure his reelection: he is on ballot for the next election. To change opinion in his favor, he requires that we land a Kerbal on the Mun. You have 24 hours, that is to say the time left before the final televised debate, to achieve this feat.";
-		static public string str_munmSynopsis = "I was able to obtain different deals,  such as X200 tanks at low prices, high power rcs thruster prototype, and some other things. New experimental pieces are available specifically for this mission. They all have been added to the research center. To search for new technology, you can perform scientific experiments around the moon (be carefull to check the research center before, all biome are not available). Remember then to perform the photographic missions to earn upgrades for your production line and research center.";
+		static public string str_munmSynopsis = "I was able to obtain different deals, such as Jumbo tanks at low prices, high power rcs thruster prototype, and some other things. New experimental pieces are available specifically for this mission. They all have been added to the research center. To search for new technology, you can perform scientific experiments around the moon (be carefull to check the research center before, all biome are not available). Remember then to perform the photographic missions to earn upgrades for your production line and research center.";
 		static public string str_munm_success = "Nice one! you have won this game!";
 		static public string str_munm_success_param = "Success of '{0}'";
 		static public string str_camera_cannot = "The mission's control center refuses to give the order to take these pictures: {0} Please fulfill the contract's conditions {0}.";
@@ -425,7 +474,8 @@ namespace KspMerillEngineFail
 		static public string str_camerafail_4 = "My astrologer has forbidden me to take this picture.";
 		static public string str_camerafail_5 = "you must enlarge.";
 		static public string str_camerafail_6 = "you must zoom out.";
-		static public string str_camera_noSlot = "The camera has a malfunction. Peraps the probe can't protect it enough.\nTry to put it on a probe/pod with science slot and sufficient power next time.";
+		static public string str_camera_noSlot = "The camera has a malfunction. Peraps the probe can't protect it enough.\nTry to put it on a probe/pod with science slot next time.";
+		static public string str_camera_noEnergy = "The camera has a malfunction. Peraps the probe can't protect it enough.\nTry to put it on a probe/pod with sufficient power next time.";
 		static public string str_camera_success = "Picture taken! May it inspire the people of Kerbin.";
 		static public string str_camera_successLong = "Your pics have inspire the kerbal kind! We have now more engineers to work bénévolement to build our rockets.";
 		static public string str_camera_button = "Take a picture";
@@ -436,7 +486,7 @@ namespace KspMerillEngineFail
 		static public string str_camera_description = "We need more Kerbals to build our rockets! Our best psychologists believe that the best way to improve our recruitment would be to spur on competent people with beautiful photos of our Mun.";
 		static public string str_camera_synopsis = "Earn 1 upgrade point for each reputation point, to be able to build or research faster.";
 		static public string str_camera_synopsis_withKerbal = "Warning: The camera must be mounted on the command pod and uses all scientific slots when taking a photo.";
-		static public string str_camera_synopsis_withoutKerbal = " Warning: The camera uses all scientific slots when taking a photo, it must be mounted on the control module.";
+		static public string str_camera_synopsis_withoutKerbal = " Warning: The camera uses all scientific slots when taking a photo and it must be mounted on the control module.";
 		static public string str_enginetest_restart_begin = "Current test ongoing for {0}. Please let it run for at least 4 seconds to gather enough data.";
 		static public string str_enginetest_restart_failOK = "A failure has just occured for engine {0} in the {1} for boot number {2}. Test data have been transmitted, you can now use this propeller for this number of starts. Trust your wonderful engineers!";
 		static public string str_enginetest_restart_failKO = "A failure has just occured for engine {0} in the {1} for boot number {2}. No test data received : check that the test modules are present and that an antenna is present.";

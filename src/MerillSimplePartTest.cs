@@ -92,12 +92,12 @@ namespace KspMerillEngineFail
 
 		public override void partTest()
 		{
-			print("[MERILL]SIMPLEPARTTEST JUST activate");
+			MerillData.log("SIMPLEPARTTEST JUST activate");
 			previousActivate = true;
 			bool isAtmo = (FlightGlobals.getStaticPressure() > 0);
 			if ((isAtmo && !alreadyTestedPreviousShipAtmo) || (!isAtmo && !alreadyTestedPreviousShipVac))
 			{
-				print("[MERILL]SIMPLEPARTTEST not tested yet");
+				MerillData.log("SIMPLEPARTTEST not tested yet");
 				//if already crashed & recovered & it's testable -> don't crash again!
 				if (((isAtmo && alreadyCrashedPreviousShipAtmo)
 						|| (!isAtmo && alreadyCrashedPreviousShipVac))
@@ -105,9 +105,9 @@ namespace KspMerillEngineFail
 					&& useInstrumentation())
 				{
 
-					print("[MERILL]SIMPLEPARTTEST already crashed");
+					MerillData.log("SIMPLEPARTTEST already crashed");
 
-					print("[MERILL]SIMPLEPARTTEST TEST added ");
+					MerillData.log("SIMPLEPARTTEST TEST added ");
 					MerillData.instance.partNameTested.Add(part.name + (isAtmo ? "Atmo" : "Vac"));
 					//TODO message
 					drawMsgToUser(string.Format(MerillData.str_part_testOK,
@@ -126,7 +126,7 @@ namespace KspMerillEngineFail
 					// 1/2 -> 1/4 chance to crahsed based on tested 
 					//FIXME: 20+80 for release
 					float chance = 2 + 100f / ((MerillData.instance.partNameTested.Count / 10) + 1);
-					print("[MERILL]SIMPLEPARTTEST crash chance are " + chance);
+					MerillData.log("SIMPLEPARTTEST crash chance are " + chance);
 					if ((isAtmo && alreadyCrashedPreviousShipAtmo)
 						|| (!isAtmo && alreadyCrashedPreviousShipVac))
 					{
@@ -140,10 +140,10 @@ namespace KspMerillEngineFail
 					//bad luck?
 					int sort = MerillData.instance.get0to99FromNotAleatTable();
 
-					print("[MERILL]SIMPLEPARTTEST crash chance are " + chance + " sort are " + sort + " => " + (sort % 100));
+					MerillData.log("SIMPLEPARTTEST crash chance are " + chance + " sort are " + sort + " => " + (sort % 100));
 					if (sort < chance)
 					{
-						print("[MERILL]SIMPLEPARTTEST EXPLODE! ");
+						MerillData.log("SIMPLEPARTTEST EXPLODE! ");
 						part.explode();
 						if (!MerillData.instance.partNameCrashed.Contains(part.name + (isAtmo ? "Atmo" : "Vac")))
 						{
@@ -174,14 +174,14 @@ namespace KspMerillEngineFail
 					}
 					else
 					{
-						print("[MERILL]SIMPLEPARTTEST TEST! " + MerillData.instance.partNameTested.Contains(part.name + (isAtmo ? "Atmo" : "Vac")));
+						MerillData.log("SIMPLEPARTTEST TEST! " + MerillData.instance.partNameTested.Contains(part.name + (isAtmo ? "Atmo" : "Vac")));
 						//already test?
 						if (!MerillData.instance.partNameTested.Contains(part.name + (isAtmo ? "Atmo" : "Vac")))
 						{
 							//check if we can record the test
 							if (useInstrumentation())
 							{
-								print("[MERILL]SIMPLEPARTTEST TEST added ");
+								MerillData.log("SIMPLEPARTTEST TEST added ");
 								MerillData.instance.partNameTested.Add(part.name + (isAtmo ? "Atmo" : "Vac"));
 								drawMsgToUser(string.Format(MerillData.str_part_testOK,
 									part.partInfo.title.ToString(),

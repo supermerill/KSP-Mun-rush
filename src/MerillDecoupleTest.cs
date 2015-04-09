@@ -6,9 +6,11 @@ using UnityEngine;
 
 namespace KspMerillEngineFail
 {
+	//note: explosion is useless : it occur in the wrong part of the vessel.
+	// anyway, this part is basically exploding himself.
     public class MerillDecoupleTest : MerillSimplePartTest
 	{
-
+		
 		ModuleDecouple decoupler;
 		
 		public override void OnLoad(ConfigNode node)
@@ -17,15 +19,10 @@ namespace KspMerillEngineFail
 
 			decoupler = this.part.Modules.OfType<ModuleDecouple>().Single();
 
-			//print("[MERILL] part contain modules:");
 			for (int i = 0; i < part.Modules.Count; i++)
 			{
 				PartModule fx = part.Modules[i];
-				//print("[Merill] module partfx: " + part.Modules[i].name
-				//	+ " , class=" + part.Modules[i].ClassName);
 			}
-			//print("[MERILL] decoupler: " + decoupler);
-			//print("[MERILL] decoupl?: " + decoupler.isDecoupled);
 		}
 
 		public override bool oneTimeActivation()

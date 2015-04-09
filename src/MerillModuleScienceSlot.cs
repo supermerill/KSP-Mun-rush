@@ -31,15 +31,16 @@ namespace KspMerillEngineFail
 			if (slotResearched) return;
 
 			// FindObjectOfType the BTSM science module
-			//print("[MERILL]MerillScienceSlotModule start, search in module " + part.Modules.Count + " , (" + state+")"
+			//MerillData.log("MerillScienceSlotModule start, search in module " + part.Modules.Count + " , (" + state+")"
 			//	+ (state.Equals(StartState.PreLaunch)) + " ; " + (state.CompareTo(StartState.PreLaunch)) + " ; " + (state & StartState.PreLaunch));
-			//print("[MERILL]MerillScienceSlotModule update " + HighLogic.LoadedSceneIsFlight + ", '" + part.vessel.situation+"'");
+			//MerillData.log("MerillScienceSlotModule update " + HighLogic.LoadedSceneIsFlight + ", '" + part.vessel.situation+"'");
 			if ((part.vessel.situation) == Vessel.Situations.FLYING)
 			{
 
 				foreach (PartModule pm in part.Modules)
 				{
-					print("[MERILL]MerillScienceSlotModule start, find module " + pm.moduleName);
+					//search what is the most upper sciecne module to consider (hiding /disabling if no science slot)
+					//MerillData.log("MerillScienceSlotModule start, find module " + pm.moduleName);
 					if (pm.moduleName.Equals("ModuleScienceExperiment"))
 					{
 						BaseEvent scienceEvent = pm.Events["DeployExperiment"];
@@ -58,7 +59,7 @@ namespace KspMerillEngineFail
 							{
 								scienceAction.active = false;
 							}
-							print("[MERILL]MerillScienceSlotModule : disable scienceEvent '" + eventToEnable + "', '" + actionToEnable + "'");
+							MerillData.log("MerillScienceSlotModule : disable scienceEvent '" + eventToEnable + "', '" + actionToEnable + "'");
 						}
 					}
 
@@ -78,11 +79,11 @@ namespace KspMerillEngineFail
 							eventToEnable.guiActive = false;
 							eventToEnable.guiActiveEditor = false;
 							actionToEnable.active = false;
-							print("[MERILL]MerillScienceSlotModule : disable btsmScienceEvent '" + eventToEnable + "', '" + actionToEnable + "'");
+							MerillData.log("MerillScienceSlotModule : disable btsmScienceEvent '" + eventToEnable + "', '" + actionToEnable + "'");
 						}
 					}
 
-					if (pm.moduleName.Equals("MerillModuleScienceFail"))
+					if (pm is MerillModuleScienceFail)
 					{
 						BaseEvent merillScienceEvent = pm.Events["MERILLScienceEventDeployOrTest"];
 						BaseAction merillScienceAction = pm.Actions["MERILLScienceActionDeployOrTest"];
@@ -101,7 +102,7 @@ namespace KspMerillEngineFail
 							eventToEnable.guiActive = false;
 							eventToEnable.guiActiveEditor = false;
 							actionToEnable.active = false;
-							print("[MERILL]MerillScienceSlotModule : disable merillScienceEvent '" + eventToEnable + "', '" + actionToEnable + "'");
+							MerillData.log("MerillScienceSlotModule : disable merillScienceEvent '" + eventToEnable + "', '" + actionToEnable + "'");
 						}
 					}
 				}
@@ -113,15 +114,15 @@ namespace KspMerillEngineFail
 
 		private void checkSlot()
 		{
-			print("[MERILL]MerillScienceSlotModule : checkSlot (hasASlot,slotResearched) (" + hasASlot + ", " + slotResearched + ")");
+			MerillData.log("MerillScienceSlotModule : checkSlot (hasASlot,slotResearched) (" + hasASlot + ", " + slotResearched + ")");
 			if (!hasASlot && !slotResearched)
 			{
 				//find our attach-object
 				if (part.parent != null)
 				{
-					print("[MERILL]MerillScienceSlotModule : parent is " + part.parent.name);
+					MerillData.log("MerillScienceSlotModule : parent is " + part.parent.name);
 					float nbRessource = part.parent.RequestResource("ScienceSlot", 1);
-					print("[MERILL]MerillScienceSlotModule : nbRessource is " + nbRessource);
+					MerillData.log("MerillScienceSlotModule : nbRessource is " + nbRessource);
 					if (nbRessource == 1)
 					{
 						hasASlot = true;
@@ -151,17 +152,17 @@ namespace KspMerillEngineFail
 					merillShowState.SetValue("Working", merillShowState.host);
 				}
 			}
-			print("[MERILL]MerillScienceSlotModule : eventToEnable '" + eventToEnable + "', '" + actionToEnable + "'");
+			MerillData.log("MerillScienceSlotModule : eventToEnable '" + eventToEnable + "', '" + actionToEnable + "'");
 			if (eventToEnable != null)
 			{
 				eventToEnable.guiActive = true;
 				eventToEnable.guiActiveEditor = true;
-				print("[MERILL]MerillScienceSlotModule : reenable '" + eventToEnable + "'");
+				MerillData.log("MerillScienceSlotModule : reenable '" + eventToEnable + "'");
 			}
 			if (actionToEnable != null)
 			{
 				actionToEnable.active = true;
-				print("[MERILL]MerillScienceSlotModule : reenable '" + actionToEnable + "'");
+				MerillData.log("MerillScienceSlotModule : reenable '" + actionToEnable + "'");
 			}
 		}
 

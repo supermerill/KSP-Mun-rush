@@ -135,35 +135,35 @@ namespace KspMerillEngineFail
 
 		public override void loadDataFromScenario(MerillData scenario)
 		{
-			//print("[merill]loadDataFromScenario : " + scenario);
+			//MerillData.log("loadDataFromScenario : " + scenario);
 			if (!scenario.maxNBSecBurn.ContainsKey(part.name + "Atmo"))
 			{
 				scenario.maxNBSecBurn[part.name + "Atmo"] = 6;
 			}
 			maxNBSecBurnAtmo = scenario.maxNBSecBurn[part.name + "Atmo"];
-			//print("[merill]loadDataFromScenario maxNBSecBurnVac: " + maxNBSecBurnAtmo);
+			//MerillData.log("loadDataFromScenario maxNBSecBurnVac: " + maxNBSecBurnAtmo);
 
 			if (!scenario.maxNBSecBurn.ContainsKey(part.name + "Vac"))
 			{
 				scenario.maxNBSecBurn[part.name + "Vac"] = 6;
 			}
 			maxNBSecBurnVac = scenario.maxNBSecBurn[part.name + "Vac"];
-			//print("[merill]loadDataFromScenario maxNBSecBurnVac: " + maxNBSecBurnVac);
+			//MerillData.log("loadDataFromScenario maxNBSecBurnVac: " + maxNBSecBurnVac);
 
 			if (!scenario.nbRestart.ContainsKey(part.name + "Atmo"))
 			{
-				//print("[merill]loadDataFromScenario maxNBRestartAtmo is not present ");
+				//MerillData.log("loadDataFromScenario maxNBRestartAtmo is not present ");
 				scenario.nbRestart[part.name + "Atmo"] = 0;
 			}
 			maxNBRestartAtmo = scenario.nbRestart[part.name + "Atmo"];
-			//print("[merill]loadDataFromScenario maxNBRestartAtmo: " + maxNBRestartAtmo);
+			//MerillData.log("loadDataFromScenario maxNBRestartAtmo: " + maxNBRestartAtmo);
 
 			if (!scenario.nbRestart.ContainsKey(part.name + "Vac"))
 			{
 				scenario.nbRestart[part.name + "Vac"] = 0;
 			}
 			maxNBRestartVac = scenario.nbRestart[part.name + "Vac"];
-			//print("[merill]loadDataFromScenario maxNBRestartVac: " + maxNBRestartVac);
+			//MerillData.log("loadDataFromScenario maxNBRestartVac: " + maxNBRestartVac);
 
 			nbRestartDisplay = "Atm: " + maxNBRestartAtmo + " / Vac: " + maxNBRestartVac;
 			burnTimeDisplay = "Atm: " + maxNBSecBurnAtmo + " / Vac: " + maxNBSecBurnVac;
@@ -176,11 +176,11 @@ namespace KspMerillEngineFail
 			nextDurationToCheck = 0;
 			//check if igniter is needed
 			maxIgniter = 0;
-			//print("[merill]loadDataFromScenario : '" + part + "'");
-			//print("[merill]loadDataFromScenario : '" + part.Resources + "'");
+			//MerillData.log("loadDataFromScenario : '" + part + "'");
+			//MerillData.log("loadDataFromScenario : '" + part.Resources + "'");
 			foreach (PartResource resource in part.Resources)
 			{
-				//print("[MERILL] enginetest " + part.name + " has " + resource.maxAmount + " " + resource.resourceName);
+				//MerillData.log(" enginetest " + part.name + " has " + resource.maxAmount + " " + resource.resourceName);
 				maxIgniter += resource.resourceName.Equals("EngineIgniter") ? (int)resource.maxAmount : 0;
 			}
 			if (maxIgniter == 0)
@@ -191,7 +191,7 @@ namespace KspMerillEngineFail
 					merilShowNbRestart.guiActive = false;
 				}
 			}
-			//print("[MERILL] enginetest " + part.name + " has " + maxIgniter + " igniter");
+			//MerillData.log(" enginetest " + part.name + " has " + maxIgniter + " igniter");
 		}
 
 		public override bool isActivated()
@@ -238,20 +238,20 @@ namespace KspMerillEngineFail
 			//check previous state
 			if (runningLastUpdate)
 			{
-				//print("[MERILL] enginetest " + part.name+" running");
+				//MerillData.log(" enginetest " + part.name+" running");
 
 				//check restart & if duration is enough ( 4 sec )
 				if (wait4secRestart && burnTime() > 4)
 				{
 					wait4secRestart = false;
-					//print("[MERILL] enginetest " + part.name + " CHECK RESTART before: " + nbRestart);
+					//MerillData.log(" enginetest " + part.name + " CHECK RESTART before: " + nbRestart);
 					nbRestart++;
-					//print("[MERILL] enginetest " + part.name + " CHECK RESTART after: " + nbRestart);
+					//MerillData.log(" enginetest " + part.name + " CHECK RESTART after: " + nbRestart);
 					checkRestart(isAtmo());
 				}
 
 				//shutdown occur?
-				//print("[MERILL] enginetest " + part.name + " is online? th=" + engine.finalThrust+", ff="+engine.fuelFlowGui
+				//MerillData.log(" enginetest " + part.name + " is online? th=" + engine.finalThrust+", ff="+engine.fuelFlowGui
 				//	+ ", " + engine.EngineIgnited + ", " + engine.currentThrottle+", "+engine.status+", "+engine.statusL2);
 				//  th=92.83253, ff=0.03040846, True, 0.5, Nominal, 
 				if (isEngineShutdown())
@@ -261,7 +261,7 @@ namespace KspMerillEngineFail
 				}
 				else
 				{
-					//print("[MERILL] enginetest " + part.name + " check flight duration");
+					//MerillData.log(" enginetest " + part.name + " check flight duration");
 					checkFlightDuration();
 				}
 
@@ -269,7 +269,7 @@ namespace KspMerillEngineFail
 			//startup occur?
 			else if (isEngineRunning())
 			{
-				//print("[MERILL] enginetest " + part.name + " startup " + maxIgniter);
+				//MerillData.log(" enginetest " + part.name + " startup " + maxIgniter);
 				runningLastUpdate = true;
 				timeIgnitedLaunch = part.vessel.launchTime;
 				timeIgnitedMission = part.vessel.missionTime;
@@ -277,7 +277,7 @@ namespace KspMerillEngineFail
 				//check if ingiter is needed
 				if (maxIgniter > 0)
 				{
-					//print("[MERILL] enginetest " + part.name + " restart to check in 4sec " + nbRestart + " =?= "
+					//MerillData.log(" enginetest " + part.name + " restart to check in 4sec " + nbRestart + " =?= "
 					//	+ MerillData.instance.nbRestart[part.name + (isAtmo() ? "Atmo" : "Vac")] + " , " + (part.name + (isAtmo() ? "Atmo" : "Vac")));
 					if (nbRestart == MerillData.instance.nbRestart[part.name + (isAtmo() ? "Atmo" : "Vac")])
 					{
@@ -307,7 +307,7 @@ namespace KspMerillEngineFail
 
 		private void testShutdown(bool atmo)
 		{
-			//print("[MERILL] enginetest " + part.name + " shutdown at " +
+			//MerillData.log(" enginetest " + part.name + " shutdown at " +
 			//	part.vessel.launchTime + "-" + timeIgnitedLaunch + " => "
 			//	+ burnTime() + " != " + part.vessel.missionTime + " into " + (atmo ? "atmo" : "vac"));
 			runningLastUpdate = false;
@@ -353,14 +353,14 @@ namespace KspMerillEngineFail
 			//}
 			///oh, let it explode, it's fun (some leftover igniter make some nasty explosion!).
 
-			//print("[MERILL] enginetest " + part.name + " restart: " + nbRestart + " ? "
+			//MerillData.log(" enginetest " + part.name + " restart: " + nbRestart + " ? "
 			//	+ MerillData.instance.nbRestart[part.name + (atmo ? "Atmo" : "Vac")] + " into " + (atmo ? "atmo" : "vac"));
 			//need to test?
 			if (nbRestart > MerillData.instance.nbRestart[part.name + (atmo ? "Atmo" : "Vac")])
 			{
 				//consume 1 resource & verify antenna.. +emit message
 				isLogingTest = isLogingTest | useInstrumentation();
-				//print("[MERILL] enginetest " + part.name + " restart useInstrumentation: " + isLogingTest);
+				//MerillData.log(" enginetest " + part.name + " restart useInstrumentation: " + isLogingTest);
 
 				//make test roll
 				bool testSuccess = false;
@@ -435,7 +435,7 @@ namespace KspMerillEngineFail
 				}
 
 				//log test data into the test parts
-				//print("[MERILL] enginetest " + part.name + " restart logging?: " + isLogingTest);
+				//MerillData.log(" enginetest " + part.name + " restart logging?: " + isLogingTest);
 				if (isLogingTest)
 				{
 					if (nbRestart == 1)
@@ -449,6 +449,7 @@ namespace KspMerillEngineFail
 						}
 						else
 						{
+							MerillData.instance.nbPartDestroy++;
 							if (!MerillData.instance.partNameCrashed.Contains(part.name + (atmo ? "StartAtmo" : "StartVac")))
 								MerillData.instance.partNameCrashed.Add(part.name + (atmo ? "StartAtmo" : "StartVac"));
 						}
@@ -468,14 +469,14 @@ namespace KspMerillEngineFail
 						maxNBRestartAtmo = Math.Max(MerillData.instance.nbRestart[part.name + "Atmo"],
 							((int)(nbRestart)));
 						MerillData.instance.nbRestart[part.name + "Atmo"] = maxNBRestartAtmo;
-						//print("[MERILL] enginetest " + part.name + " restart nbRetart Atmo test: " + MerillData.instance.nbRestart[part.name + "Atmo"]);
+						//MerillData.log(" enginetest " + part.name + " restart nbRetart Atmo test: " + MerillData.instance.nbRestart[part.name + "Atmo"]);
 					}
 					else
 					{
 						maxNBRestartVac = Math.Max(MerillData.instance.nbRestart[part.name + "Vac"],
 							((int)(nbRestart)));
 						MerillData.instance.nbRestart[part.name + "Vac"] = maxNBRestartAtmo;
-						//print("[MERILL] enginetest " + part.name + " restart nbRetart Vac test: " + MerillData.instance.nbRestart[part.name + "Vac"]);
+						//MerillData.log(" enginetest " + part.name + " restart nbRetart Vac test: " + MerillData.instance.nbRestart[part.name + "Vac"]);
 					}
 					nbRestartDisplay = "Atm: " + maxNBRestartAtmo + " / Vac: " + maxNBRestartVac;
 
@@ -496,13 +497,13 @@ namespace KspMerillEngineFail
 		private void checkFlightDuration()
 		{
 			bool atmo = isAtmo();
-			//print("[MERILL] enginetest checkFlightDuration into " + (atmo ? "atmo" : "vac") + ", and before = " + isFlyingAtmo);
+			//MerillData.log(" enginetest checkFlightDuration into " + (atmo ? "atmo" : "vac") + ", and before = " + isFlyingAtmo);
 			//isFlyingAtmo
 			if (isFlyingAtmo != atmo)
 			{
 				//change!
 				//update if needed
-				//print("[MERILL] enginetest checkFlightDuration update?" + isLogingTest);
+				//MerillData.log(" enginetest checkFlightDuration update?" + isLogingTest);
 				if (isLogingTest)
 				{
 					//log max burn time & test engine for the little duration
@@ -517,7 +518,7 @@ namespace KspMerillEngineFail
 				//begin test it the next udate
 				return;
 			}
-			//print("[MERILL] enginetest " + part.name + " duration: " + (part.vessel.launchTime - timeIgnited ) + " ? "
+			//MerillData.log(" enginetest " + part.name + " duration: " + (part.vessel.launchTime - timeIgnited ) + " ? "
 			//	+ (atmo ? maxNBSecBurnAtmo : maxNBSecBurnVac));
 			//check if we have to do a duration test = (10 * 2^X) [ when (byte)X change => test ] + some random
 			if (burnTime() > (atmo ? maxNBSecBurnAtmo : maxNBSecBurnVac))
@@ -528,7 +529,7 @@ namespace KspMerillEngineFail
 					nextDurationToCheck = Math.Max((7d + aleat.NextDouble() * 6f), (atmo ? maxNBSecBurnAtmo : maxNBSecBurnVac) * (1.5d + aleat.NextDouble() / 2));
 					isFlyingAtmo = atmo;
 
-					//print("[MERILL] enginetest  init duration test to " + nextDurationToCheck);
+					//MerillData.log(" enginetest  init duration test to " + nextDurationToCheck);
 
 					// use instrumentation (if not in use)
 					isLogingTest = isLogingTest || useInstrumentation();
@@ -570,10 +571,10 @@ namespace KspMerillEngineFail
 			expAfter = log2(expAfter);
 			//if (expAfter > expBefore)
 			//{
-			//print("[MERILL] enginetest " + part.name + " duration expBefore: " + expBefore
+			//MerillData.log(" enginetest " + part.name + " duration expBefore: " + expBefore
 			//	+ ", expAfter " + expAfter);
 
-			//print("[MERILL] enginetest " + part.name + (atmo ? "atmo" : "vac") + " duration before: " + (atmo ? maxNBSecBurnAtmo : maxNBSecBurnVac)
+			//MerillData.log(" enginetest " + part.name + (atmo ? "atmo" : "vac") + " duration before: " + (atmo ? maxNBSecBurnAtmo : maxNBSecBurnVac)
 			//	+ ", after " + nextDurationToCheck);
 
 			//need to test
@@ -666,6 +667,7 @@ namespace KspMerillEngineFail
 					}
 					else
 					{
+						MerillData.instance.nbPartDestroy++;
 						if (!MerillData.instance.partNameCrashed.Contains(part.name + (atmo ? "DurAtmo" : "DurVac")))
 							MerillData.instance.partNameCrashed.Add(part.name + (atmo ? "DurAtmo" : "DurVac"));
 					}

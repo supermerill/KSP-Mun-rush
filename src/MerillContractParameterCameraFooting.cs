@@ -73,17 +73,25 @@ namespace KspMerillEngineFail
 			node.AddValue("withKerbal", useKerbal?"true":"false");
 
 		}
+
+
+		public bool isSituationOk(Part camera)
+		{
+			return MerillUtil.getDetailedSituation(camera.vessel) == situationForShoot
+				&& camera.vessel.mainBody == body2Shoot && base.state == ParameterState.Incomplete;
+		}
 		
 		public bool tryTakePicture(Part camera)
 		{
-			MerillData.print("[MERILL]takePicture! " + MerillUtil.getDetailedSituation(camera.vessel) + " == " + "situationForShoot.name" +
-				" && " + camera.vessel.mainBody.name + " == " + body2Shoot.name);
+			//MerillData.log("takePicture! " + camera.vessel.situation + " at " + MerillUtil.getDetailedSituation(camera.vessel) + " == " + situationForShoot +
+			//	" && " + camera.vessel.mainBody.name + " == " + body2Shoot.name + " use kerbal?"+useKerbal
+			//	+ ", state:" + base.state);
 			if (MerillUtil.getDetailedSituation(camera.vessel) == situationForShoot
 				&& camera.vessel.mainBody == body2Shoot && base.state == ParameterState.Incomplete)
 			{
 				//IsControllable?
-				MerillData.print("[MERILL]camera isCommandable=" + camera.vessel.isCommandable);
-				MerillData.print("[MERILL]camera IsControllable=" + camera.vessel.IsControllable);
+				//MerillData.log("camera isCommandable=" + camera.vessel.isCommandable);
+				//MerillData.log("camera IsControllable=" + camera.vessel.IsControllable);
 				if (!camera.vessel.IsControllable)
 				{
 					return false;
@@ -91,7 +99,7 @@ namespace KspMerillEngineFail
 				//manned?
 				if (useKerbal)
 				{
-					MerillData.print("[MERILL]camera manned=" + (camera.vessel.GetCrewCount() > 0));
+					MerillData.log("camera manned=" + (camera.vessel.GetCrewCount() > 0));
 					if (camera.vessel.GetCrewCount() == 0)
 					{
 						return false;
@@ -104,25 +112,35 @@ namespace KspMerillEngineFail
 				bool findAtLeastASlot = false;
 				if (camera.parent != null)
 				{
-					MerillData.print("[MERILL]cameraparameter : parent for science slot is " + camera.parent.name);
+					MerillData.log("cameraparameter : parent for science slot is " + camera.parent.name);
 					while(camera.parent.RequestResource("ScienceSlot", 1) == 1)
 					{
-						MerillData.print("[MERILL]cameraparameter : find a slot, consumed it");
 						findAtLeastASlot = true;
+						MerillData.log("cameraparameter : find a slot, consumed it " + findAtLeastASlot);
 					}
 				}
-				//consume elctricity
-				float energyReceived = camera.RequestResource("ElectricCharge", 800);
-				MerillData.print("[MERILL]cameraparameter : find elec charge of "+energyReceived);
+				MerillData.log("cameraparameter : slot? " + findAtLeastASlot);
 
-				//erorr: can't fins at least a slot
-				if (!findAtLeastASlot || energyReceived < 790)
+				float energyReceived = 0;
+				//consume elctricity
+				if (!findAtLeastASlot) {
+					energyReceived = camera.RequestResource("ElectricCharge", 800);
+					MerillData.log("cameraparameter : find elec charge of "+energyReceived);
+					if (energyReceived < 790)
+					{
+						ScreenMessages.PostScreenMessage(MerillData.str_camera_noEnergy, 10f, ScreenMessageStyle.UPPER_LEFT);
+						return false;
+					}
+				}
+
+				//error: can't fins at least a slot
+				if (!findAtLeastASlot)
 				{
 					ScreenMessages.PostScreenMessage(MerillData.str_camera_noSlot, 10f, ScreenMessageStyle.UPPER_LEFT);
 					return false;
 				}
 
-				MerillData.print("[MERILL]takePicture! OKKKKK " + ReputationCompletion);
+				MerillData.log("takePicture! OKKKKK " + ReputationCompletion);
 				//todo: check antenna
 
 				//add build point upgrade

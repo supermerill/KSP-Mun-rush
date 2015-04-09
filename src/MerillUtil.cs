@@ -6,7 +6,6 @@ using UnityEngine;
 
 namespace KspMerillEngineFail
 {
-	// todelete not used
 	public class MerillUtil
 	{
 
@@ -33,15 +32,18 @@ namespace KspMerillEngineFail
 				| vessel.situation == Vessel.Situations.SPLASHED)
 				return ExperimentSituations.SrfLanded;
 
+			MerillData.log("getDetailedSituation atmosphere: " + vessel.mainBody.atmosphere);
+			MerillData.log("getDetailedSituation flyingAltitudeThreshold: " + vessel.mainBody.scienceValues.flyingAltitudeThreshold + " ?> " + vessel.altitude);
+			MerillData.log("getDetailedSituation maxAtmosphereAltitude: " + vessel.mainBody.maxAtmosphereAltitude + " ?< " + vessel.altitude);
+			MerillData.log("getDetailedSituation spaceAltitudeThreshold: " + vessel.mainBody.scienceValues.spaceAltitudeThreshold + " ?> " + vessel.altitude);
+			
+			if (vessel.mainBody.atmosphere && vessel.mainBody.maxAtmosphereAltitude > vessel.altitude) // i am in atmo?
+				if (vessel.mainBody.scienceValues.flyingAltitudeThreshold > vessel.altitude) // where in atmo?
+					return ExperimentSituations.FlyingLow;
+				else return ExperimentSituations.FlyingHigh;
 
-			if (vessel.mainBody.atmosphere) //atmo?
-				if (vessel.mainBody.maxAtmosphereAltitude > vessel.altitude) // i am in atmo?
-					if (vessel.mainBody.scienceValues.flyingAltitudeThreshold > vessel.altitude) // where in atmo?
-						return ExperimentSituations.FlyingLow;
-					else return ExperimentSituations.FlyingHigh;
-
-			if (vessel.mainBody.maxAtmosphereAltitude < vessel.altitude) //i am in space?
-				if (vessel.mainBody.scienceValues.spaceAltitudeThreshold < vessel.altitude) //where in space?
+			if (!vessel.mainBody.atmosphere && vessel.mainBody.maxAtmosphereAltitude < vessel.altitude) //i am in space?
+				if (vessel.mainBody.scienceValues.spaceAltitudeThreshold > vessel.altitude) //where in space?
 					return ExperimentSituations.InSpaceLow;
 				else return ExperimentSituations.InSpaceHigh;
 

@@ -25,15 +25,18 @@ namespace KspMerillEngineFail
 				{
 					foreach (BaseEvent temp in pm.Events)
 					{
-						print("[MERILL]Camera base event in ModuleLight " + temp.name);
+						//MerillData.log("Camera base event in ModuleLight " + temp.name);
 						temp.guiActive = false;
+						temp.guiActiveEditor = false;
 					}
-					//BaseEvent eventToDisable = pm.Events["LightsOff"];
-					//"LightsOn"
-
 					foreach (BaseAction temp in pm.Actions)
 					{
 						temp.active = false;
+					}
+					foreach (BaseField temp in pm.Fields)
+					{
+						temp.guiActive = false;
+						temp.guiActiveEditor = false;
 					}
 				}
 			}
@@ -50,34 +53,36 @@ namespace KspMerillEngineFail
 	    [KSPEvent( guiName = "Take Footage", guiActive = true, guiActiveEditor = false )]
         public void takeFootage()
         {
+
 			bool paramOk = false;
-			MerillData.print("[MERILL]camera take footage "+(ContractSystem.Instance.Contracts!=null));
+			MerillContractParameterCameraFooting param = null;
+			MerillData.log("camera take picture "+(ContractSystem.Instance.Contracts!=null));
 			//TODO: take screenshot ^^ TODO: move game camera to the camera before screenshot (or iva)
 			//find a contract
 			if ( ContractSystem.Instance.Contracts != null )
 			{
-				//MerillData.print("[MERILL]camera take footage search in " + ContractSystem.Instance.Contracts.Count);
 			foreach ( Contract tempContract in ContractSystem.Instance.Contracts )
 				{
-					//MerillData.print("[MERILL]camera take footage search with " + tempContract + " => " + tempContract.GetType());
-					//MerillData.print("[MERILL]camera take footage search with tempContract.DateAccepted " + tempContract.DateAccepted+", "+tempContract.IsFinished());
 					if ( tempContract is MerillContractUseCamera )
 					{
 						MerillContractUseCamera tempPayloadContract = (MerillContractUseCamera)tempContract;
-						if (tempContract.DateAccepted != 0)
-						{
+						MerillData.log("camera tempPayloadContract DateAccepted: " + tempPayloadContract.DateAccepted);
+						MerillData.log("camera tempPayloadContract ContractState: " + tempPayloadContract.ContractState);
 
+						if (tempPayloadContract.ContractState != Contract.State.Active)
+						{
+							continue;
 						}
-						//MerillData.print("[MERILL]camera take footage search find! parameter count = " + tempPayloadContract.ParameterCount);
-						//MerillData.print("[MERILL]camera take footage search find! parameter is " + tempPayloadContract.GetParameter<MerillContractParameterCameraFooting>());
 						
 						foreach(ContractParameter tempParameter in tempPayloadContract.AllParameters)
 						{
 							if(tempParameter is MerillContractParameterCameraFooting)
 							{
-								if (((MerillContractParameterCameraFooting)tempParameter).tryTakePicture(part))
+								MerillData.log("camera MerillContractParameterCameraFooting find to take picture. " + tempPayloadContract.GetParameter<MerillContractParameterCameraFooting>());
+								if (((MerillContractParameterCameraFooting)tempParameter).isSituationOk(part))
 								{
 									paramOk = true;
+									param = ((MerillContractParameterCameraFooting)tempParameter);
 									//break;
 									//break 2 'for'
 									goto Found;
@@ -88,13 +93,17 @@ namespace KspMerillEngineFail
 				}
 			}
 		Found:
-			if (paramOk)
+			if (paramOk && param != null)
 			{
-				ScreenMessages.PostScreenMessage(MerillData.str_camera_success
-					, 10F, ScreenMessageStyle.UPPER_LEFT);
-				//disable
-				isEnable = false;
-				Events["takeFootage"].guiActive = false;
+				if (param.tryTakePicture(part))
+				{
+					ScreenMessages.PostScreenMessage(MerillData.str_camera_success
+						, 10F, ScreenMessageStyle.UPPER_LEFT);
+					//disable
+					isEnable = false;
+					Events["takeFootage"].guiActive = false;
+				}
+				//else
 			}
 			else
 			{

@@ -11,8 +11,8 @@ namespace KspMerillEngineFail
 	{
 		int i = 0;
 
-		private BaseEvent deployMirrorEvent;
-		private BaseAction deployMirrorAction;
+		protected BaseEvent deployMirrorEvent;
+		protected BaseAction deployMirrorAction;
 
 		public override void OnStart(StartState state)
 		{
@@ -20,17 +20,17 @@ namespace KspMerillEngineFail
 
 			foreach (PartModule pm in part.Modules)
 			{
-				print("[MERILL]mirror as module " + pm.name);
-				foreach (BaseEvent temp in pm.Events)
-				{
-					print("[MERILL]mirror event " + temp.name+" "+temp.guiActive);
-					//temp.guiActive = false;
-				}
-				foreach (BaseAction temp in pm.Actions)
-				{
-					print("[MERILL]mirror action " + temp.name + " " + temp.active);
-					//temp.active = false;
-				}
+				//MerillData.log("mirror as module " + pm.name);
+				//foreach (BaseEvent temp in pm.Events)
+				//{
+				//	MerillData.log("mirror event " + temp.name+" "+temp.guiActive);
+				//	//temp.guiActive = false;
+				//}
+				//foreach (BaseAction temp in pm.Actions)
+				//{
+				//	MerillData.log("mirror action " + temp.name + " " + temp.active);
+				//	//temp.active = false;
+				//}
 				if (pm.moduleName.Equals("ModuleAnimateGeneric"))
 				{
 
@@ -55,87 +55,98 @@ namespace KspMerillEngineFail
 			base.OnUpdate();
 			i++;
 			if (i % 10 != 0) return;
-			//print("[MERILL]mirror pos? " + part.orgPos);
-			//print("[MERILL]mirror orientation? " + part.orgRot);
-			//print("[MERILL]mirror attach orientation? " + part.attRotation);
-			//print("[MERILL]mirror axis? " + part.mirrorAxis);
-			//print("[MERILL]mirror axis2? " + part.mirrorRefAxis);
-			//print("[MERILL]mirror axis3? " + part.mirrorVector);
+			//MerillData.log("mirror pos? " + part.orgPos);
+			//MerillData.log("mirror orientation? " + part.orgRot);
+			//MerillData.log("mirror attach orientation? " + part.attRotation);
+			//MerillData.log("mirror axis? " + part.mirrorAxis);
+			//MerillData.log("mirror axis2? " + part.mirrorRefAxis);
+			//MerillData.log("mirror axis3? " + part.mirrorVector);
 			////Planetarium.fetch.Home.
 			//Vector3d targetPos = Planetarium.fetch.Home.GetWorldSurfacePosition(vessel.latitude, vessel.longitude, 0);
-			//print("[MERILL]mirror vesselPosOnKerbin " + targetPos);
+			//MerillData.log("mirror vesselPosOnKerbin " + targetPos);
 			//Vector3d spaceCenterPos = Planetarium.fetch.Home.GetWorldSurfacePosition(SpaceCenter.Instance.Latitude, SpaceCenter.Instance.Longitude, 0);
-			//print("[MERILL]mirror spaceCenterPos " + spaceCenterPos);
-			//print("[MERILL]mirror distance " + Vector3d.Distance(targetPos, spaceCenterPos));
-			//print("[MERILL]mirror angle " + Vector3d.Angle(targetPos, spaceCenterPos));
+			//MerillData.log("mirror spaceCenterPos " + spaceCenterPos);
+			//MerillData.log("mirror distance " + Vector3d.Distance(targetPos, spaceCenterPos));
+			//MerillData.log("mirror angle " + Vector3d.Angle(targetPos, spaceCenterPos));
 			//double dDistFromKerbin = Planetarium.fetch.Home.GetAltitude(vessel.GetWorldPos3D());
-			//print("[MERILL]mirror distKerbin " + dDistFromKerbin);
+			//MerillData.log("mirror distKerbin " + dDistFromKerbin);
 			//Vector3d partPos = Planetarium.fetch.Home.GetWorldSurfacePosition(
 			//	Planetarium.fetch.Home.GetLatitude(vessel.GetWorldPos3D()),
 			//	Planetarium.fetch.Home.GetLongitude(vessel.GetWorldPos3D()),
 			//	Planetarium.fetch.Home.GetAltitude(vessel.GetWorldPos3D()));
-			//print("[MERILL]mirror vesselPos " + partPos);
-			//print("[MERILL]mirror vesselDistance " + Vector3d.Distance(partPos, spaceCenterPos));
-			//print("[MERILL]mirror vesselAngle " + Vector3d.Angle(partPos, spaceCenterPos));
+			//MerillData.log("mirror vesselPos " + partPos);
+			//MerillData.log("mirror vesselDistance " + Vector3d.Distance(partPos, spaceCenterPos));
+			//MerillData.log("mirror vesselAngle " + Vector3d.Angle(partPos, spaceCenterPos));
 
 		}
 
 		public override void doScienceEvent()
 		{
 			if (deployMirror())
-			base.doScienceEvent();
-			foreach (PartModule pm in part.Modules)
 			{
-				print("[MERILL]mirror as module " + pm.name);
-				foreach (BaseEvent temp in pm.Events)
+				if (canBeTested && btsmScienceEvent != null /*&& isInstrumentOk() don't fail!*/)
 				{
-					print("[MERILL]mirror event " + temp.name + " " + temp.guiName + " " + temp.guiActive);
-					//temp.guiActive = false;
-				}
-				foreach (BaseAction temp in pm.Actions)
-				{
-					print("[MERILL]mirror action " + temp.name + " " + temp.guiName + " " + temp.active);
-					//temp.active = false;
+					btsmScienceEvent.Invoke();
 				}
 			}
+			//foreach (PartModule pm in part.Modules)
+			//{
+			//	MerillData.log("mirror as module " + pm.name);
+			//	foreach (BaseEvent temp in pm.Events)
+			//	{
+			//		MerillData.log("mirror event " + temp.name + " " + temp.guiName + " " + temp.guiActive);
+			//		//temp.guiActive = false;
+			//	}
+			//	foreach (BaseAction temp in pm.Actions)
+			//	{
+			//		MerillData.log("mirror action " + temp.name + " " + temp.guiName + " " + temp.active);
+			//		//temp.active = false;
+			//	}
+			//}
 		}
 
 		public override void doScienceAction()
 		{
 			if (deployMirror())
-			base.doScienceAction();
+			{
+				//base.doScienceAction();
+				if (base.canBeTested && base.btsmScienceAction != null /*&& isInstrumentOk() do not fail!*/)
+				{
+					base.btsmScienceAction.Invoke(new KSPActionParam(KSPActionGroup.None, KSPActionType.Activate));
+				}
+			}
 		}
 
 		//method deploy
 		protected bool deployMirror()
 		{
-			foreach (PartModule pm in part.Modules)
-			{
-				print("[MERILL]mirror as module " + pm.name);
-				foreach (BaseEvent temp in pm.Events)
-				{
-					print("[MERILL]mirror event " + temp.name + " " + temp.guiName + " " + temp.guiActive);
-					//temp.guiActive = false;
-				}
-				foreach (BaseAction temp in pm.Actions)
-				{
-					print("[MERILL]mirror action " + temp.name + " " + temp.guiName + " " + temp.active);
-					//temp.active = false;
-				}
-			}
+			//foreach (PartModule pm in part.Modules)
+			//{
+			//	MerillData.log("mirror as module " + pm.name);
+			//	foreach (BaseEvent temp in pm.Events)
+			//	{
+			//		MerillData.log("mirror event " + temp.name + " " + temp.guiName + " " + temp.guiActive);
+			//		//temp.guiActive = false;
+			//	}
+			//	foreach (BaseAction temp in pm.Actions)
+			//	{
+			//		MerillData.log("mirror action " + temp.name + " " + temp.guiName + " " + temp.active);
+			//		//temp.active = false;
+			//	}
+			//}
 
-			print("[MERILL]mirror situation : " + part.vessel.situation);
-			print("[MERILL]mirror situation : " + vessel.situation);
-			print("[MERILL]mirror situation needed : " + Vessel.Situations.LANDED);
-			print("[MERILL]mirror vessel.mainBody : " + vessel.mainBody.name);
-			print("[MERILL]mirror vessel.mainBody needed : Mun");
-			print("[MERILL]mirror altitude : " + vessel.altitude);
-			print("[MERILL]mirror splashed : " + vessel.Splashed);
-			print("[MERILL]mirror llanded : " + vessel.Landed);
-			print("[MERILL]mirror llandedat : " + vessel.landedAt);
-			print("[MERILL]mirror landor splashed : " + vessel.LandedOrSplashed);
-			print("[MERILL]mirror if : " + ((!(part.vessel.situation == Vessel.Situations.LANDED)) || part.vessel.mainBody.name.Equals("Mun")));
-			print("[MERILL]mirror if : " + (!(part.vessel.situation == Vessel.Situations.LANDED)) +" || "+part.vessel.mainBody.name.Equals("Mun"));
+			//MerillData.log("mirror situation : " + part.vessel.situation);
+			//MerillData.log("mirror situation : " + vessel.situation);
+			//MerillData.log("mirror situation needed : " + Vessel.Situations.LANDED);
+			//MerillData.log("mirror vessel.mainBody : " + vessel.mainBody.name);
+			//MerillData.log("mirror vessel.mainBody needed : Mun");
+			//MerillData.log("mirror altitude : " + vessel.altitude);
+			//MerillData.log("mirror splashed : " + vessel.Splashed);
+			//MerillData.log("mirror llanded : " + vessel.Landed);
+			//MerillData.log("mirror llandedat : " + vessel.landedAt);
+			//MerillData.log("mirror landor splashed : " + vessel.LandedOrSplashed);
+			//MerillData.log("mirror if : " + ((!(part.vessel.situation == Vessel.Situations.LANDED)) || part.vessel.mainBody.name.Equals("Mun")));
+			//MerillData.log("mirror if : " + (!(part.vessel.situation == Vessel.Situations.LANDED)) +" || "+part.vessel.mainBody.name.Equals("Mun"));
 			//check landing on mun
 			if( part.vessel.situation != Vessel.Situations.LANDED || (!part.vessel.mainBody.name.Equals("Mun")))
 			{
@@ -147,7 +158,7 @@ namespace KspMerillEngineFail
 					, 10f, ScreenMessageStyle.UPPER_LEFT);
 				return false;
 			}
-			print("[MERILL]mirror landed : ok for deploy");
+			//MerillData.log("mirror landed : ok for deploy");
 			//check orientation
 			//TODO
 			//check kerbin visibility
@@ -157,7 +168,7 @@ namespace KspMerillEngineFail
 			deployMirrorEvent.Invoke();
 
 			//launch the real exp (window with experiment)
-			print("[MERILL]mirror check ok");
+			//MerillData.log("mirror check ok");
 			return true;
 		}
 

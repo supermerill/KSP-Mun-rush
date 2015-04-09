@@ -64,7 +64,7 @@ namespace KspMerillEngineFail
 		public bool doTest(bool hasCrashed, bool hasPassAtmo)
 		{
 			float chance = 2 + 75f / ((((float)MerillData.instance.partNameTested.Count) / 8f) + 1);
-			//print("[Merill] chance= 2 + 75f / ("+(((float)MerillData.instance.partNameTested.Count) / 8f) +"+ 1)");
+			//MerillData.log(" chance= 2 + 75f / ("+(((float)MerillData.instance.partNameTested.Count) / 8f) +"+ 1)");
 			if ((isAtmo() && hasPassAtmo)
 				|| (!isAtmo() && hasCrashed))
 			{
@@ -78,32 +78,32 @@ namespace KspMerillEngineFail
 			// luck?
 			int peudoAleat = MerillData.instance.get0to99FromNotAleatTable("test_"+part.name);
 
-			print("[Merill] test: " + peudoAleat + " ?> " + chance);
+			print("[MERILL][Mun Rush] test part "+part.name+" : " + peudoAleat + " ?> " + chance);
 
 			return peudoAleat > chance;
 		}
 
 		protected bool useInstrumentation()
 		{
-			//print("[MERILL]useInstrumentation vessel conrollable? HasControlSources:" + vessel.HasControlSources()
+			//MerillData.log("useInstrumentation vessel conrollable? HasControlSources:" + vessel.HasControlSources()
 			//	+ ", comm:" + vessel.isCommandable + ",  ctrl:" + vessel.IsControllable + ", act:" + vessel.isActiveVessel);
 
 			if (vessel.IsControllable)
 			{
-				//print("[MERILL]useInstrumentation vessel conrollable! " + vessel.Parts.Count+", "+part.vessel.Parts.Count+", "+vessel.parts);
+				//MerillData.log("useInstrumentation vessel conrollable! " + vessel.Parts.Count+", "+part.vessel.Parts.Count+", "+vessel.parts);
 				//vessel.getmforeach (Part part in v.Parts)
 				foreach (Part p in vessel.parts)
 				{
 					foreach (PartModule module in p.Modules)
 					{
-						//print("[MERILL]useInstrumentation see module " + module.moduleName+", "+module.ClassName+", "
+						//MerillData.log("useInstrumentation see module " + module.moduleName+", "+module.ClassName+", "
 						//	+module.GetType().IsSubclassOf(typeof(ModuleDataTransmitter)));
 						if (module.GetType().IsSubclassOf(typeof(ModuleDataTransmitter)) && ((ModuleDataTransmitter)module).CanTransmit())
 						{
 
 							//TODO: check for engineer presence to reduce usage of instrumentation (oO) (/10?)
 							float ressource = part.RequestResource("TestingInstrument", 1f);
-							//print("[MERILL]useInstrumentation TestingInstrument " + ressource);
+							//MerillData.log("useInstrumentation TestingInstrument " + ressource);
 							//ok, ya une antenne
 							if (ressource == 1f)
 							{

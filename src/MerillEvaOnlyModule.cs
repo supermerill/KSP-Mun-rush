@@ -13,14 +13,14 @@ namespace KspMerillEngineFail
 		public override void OnStart(StartState state)
 		{
 			// FindObjectOfType the BTSM science module
-			print("[MERILL]MerillEvaOnlyModule! start, search in " + part.Modules.Count + " modules");
+			MerillData.log("MerillEvaOnlyModule! start, search in " + part.Modules.Count + " modules");
 			foreach (PartModule pm in part.Modules)
 			{
-				//print("[MERILL]MerillEvaOnlyModule! start, find module " + pm.moduleName);
+				//MerillData.log("MerillEvaOnlyModule! start, find module " + pm.moduleName);
 				//foreach (BaseEvent evt in pm.Events)
 				//{
-				//	print("[MERILL]MerillEvaOnlyModule! ----- has event " + evt.guiName + ", " + evt + " act:" + evt.active);
-				//	print("[MERILL]MerillEvaOnlyModule! ----- --------- " 
+				//	MerillData.log("MerillEvaOnlyModule! ----- has event " + evt.guiName + ", " + evt + " act:" + evt.active);
+				//	MerillData.log("MerillEvaOnlyModule! ----- --------- " 
 				//		+ "extoEVAOnly=" + evt.externalToEVAOnly+", cat: "+evt.category+", actEdit"+evt.guiActiveEditor
 				//		+ ", ActUnfoc" + evt.guiActiveUnfocused+", assigned"+evt.assigned);
 				//}
@@ -30,7 +30,7 @@ namespace KspMerillEngineFail
 				{
 
 					BaseEvent Toggle = pm.Events["Toggle"];
-					//print("[MERILL]MerillEvaOnlyModule! ---- find Toggle " + Toggle);
+					//MerillData.log("MerillEvaOnlyModule! ---- find Toggle " + Toggle);
 					if (Toggle != null)
 					{
 						Toggle.active = false;
@@ -38,8 +38,8 @@ namespace KspMerillEngineFail
 						Toggle.guiActiveEditor = false;
 					}
 					BaseEvent evt = Toggle;
-					//print("[MERILL]MerillEvaOnlyModule! ----- has Toggle " + evt.guiName + ", " + evt + " act:" + evt.active);
-					//print("[MERILL]MerillEvaOnlyModule! ----- --------- " 
+					//MerillData.log("MerillEvaOnlyModule! ----- has Toggle " + evt.guiName + ", " + evt + " act:" + evt.active);
+					//MerillData.log("MerillEvaOnlyModule! ----- --------- " 
 					//	+ "extoEVAOnly=" + evt.externalToEVAOnly+", cat: "+evt.category+", actEdit"+evt.guiActiveEditor
 					//	+ ", ActUnfoc" + evt.guiActiveUnfocused+", assigned"+evt.assigned);
 				}
@@ -49,8 +49,8 @@ namespace KspMerillEngineFail
 					BaseAction btsmScienceAction = pm.Actions["BTSMDeployExperimentAction"];
 					BaseEvent merillScienceEvent = Events["MerillEventDeployScienceEva"];
 
-					print("[MERILL]MerillEvaOnlyModule! ---- find btsmScienceEvent " + btsmScienceEvent);
-					print("[MERILL]MerillEvaOnlyModule! ---- find btsmScienceAction " + btsmScienceAction);
+					MerillData.log("MerillEvaOnlyModule! ---- find btsmScienceEvent " + btsmScienceEvent);
+					MerillData.log("MerillEvaOnlyModule! ---- find btsmScienceAction " + btsmScienceAction);
 					string scienceName = "Deploy";
 					if (btsmScienceEvent != null)
 					{
@@ -73,7 +73,7 @@ namespace KspMerillEngineFail
 		[KSPEvent(active = true, guiActiveUnfocused = true, guiName = "deployScienceEva", unfocusedRange = 20f, externalToEVAOnly = true)]
 		private void MerillEventDeployScienceEva()
 		{
-			print("[MERILL]MerillEvaOnlyModule! MerillEventDeployScienceEva");
+			MerillData.log("MerillEvaOnlyModule! MerillEventDeployScienceEva");
 			if (btsmScienceEvent != null)
 				btsmScienceEvent.Invoke();
 		}

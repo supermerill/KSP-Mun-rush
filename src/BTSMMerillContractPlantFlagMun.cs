@@ -18,7 +18,7 @@ namespace KspMerillEngineFail
 		//omg, it's called a big amount of time
 		protected override bool Generate()
 		{
-			//MerillData.print("[Merill] contract generate");
+			//MerillData.log(" contract generate");
 
 			//check for already generated : need only 1
             int nbGenerated = ContractSystem.Instance.GetCurrentContracts<BTSMMerillContractPlantFlagMun>().Count();
@@ -55,7 +55,7 @@ namespace KspMerillEngineFail
 
 			ContractParameter parameter = AddParameter(new MerillContractParameterSuccessContract("Plant a Flag on the Mun!"));
 
-			//MerillData.print("[Merill] end generate");
+			//MerillData.log(" end generate");
 			return true;
 		}
 
@@ -72,7 +72,7 @@ namespace KspMerillEngineFail
 		{
 			if (base.dateAccepted == 0)
 			{
-				MerillData.print("[MERILL]mun mission: can't add exp part: date accepted=" + dateAccepted);
+				MerillData.log("mun mission: can't add exp part: date accepted=" + dateAccepted);
 			}
 			try
 			{
@@ -84,7 +84,7 @@ namespace KspMerillEngineFail
 				{
 					if (aPart.partPrefab != null && aPart.partPrefab.Modules != null)
 					{
-						//MerillData.print("[merill]part " + aPart.name);
+						//MerillData.log("part " + aPart.name);
 						foreach (PartModule pm in aPart.partPrefab.Modules)
 						{
 							if (pm.moduleName.Equals("MerillMissionStub"))
@@ -92,20 +92,20 @@ namespace KspMerillEngineFail
 								if (((MerillMissionStub)pm).missionName.Equals(this.GetType().Name))
 								{
 
-									MerillData.print("[merill] RD find a part " + pm.name);
-									MerillData.print("[merill] RD purchased? " + ResearchAndDevelopment.PartModelPurchased(aPart));
-									MerillData.print("[merill] RD available? " + ResearchAndDevelopment.PartTechAvailable(aPart));
-									MerillData.print("[merill] RD mi " + aPart.moduleInfo);
-									MerillData.print("[merill] RD tech required: " + aPart.TechRequired);
-									MerillData.print("[merill] RD tech Really required: " + ((MerillMissionStub)pm).techRequired);
-									MerillData.print("[merill] RD tech Really required purchased? : "
+									MerillData.log(" RD find a part " + pm.name);
+									MerillData.log(" RD purchased? " + ResearchAndDevelopment.PartModelPurchased(aPart));
+									MerillData.log(" RD available? " + ResearchAndDevelopment.PartTechAvailable(aPart));
+									MerillData.log(" RD mi " + aPart.moduleInfo);
+									MerillData.log(" RD tech required: " + aPart.TechRequired);
+									MerillData.log(" RD tech Really required: " + ((MerillMissionStub)pm).techRequired);
+									MerillData.log(" RD tech Really required purchased? : "
 										+ ResearchAndDevelopment.GetTechnologyState(((MerillMissionStub)pm).techRequired));
 									//already set, and already researched?
 									if (ResearchAndDevelopment.GetTechnologyState(
 										((MerillMissionStub)pm).techRequired) == RDTech.State.Available
 										&& aPart.TechRequired == ((MerillMissionStub)pm).techRequired)
 									{
-										MerillData.print("[MERILL] RD find a part with r&d node " + pm.name);
+										MerillData.log(" RD find a part with r&d node " + pm.name);
 										//check if already experimental
 										if (!ResearchAndDevelopment.IsExperimentalPart(
 											PartLoader.getPartInfoByName(((MerillMissionStub)pm).partUnlock)))
@@ -116,19 +116,19 @@ namespace KspMerillEngineFail
 									{
 										try { 
 											//try to attach the stub to a research node
-											MerillData.print("[MERILL] RD find a part without r&d node " + pm.name);
+											MerillData.log(" RD find a part without r&d node " + pm.name);
 
 											RDTech tech = AssetBase.RnDTechTree.FindTech(
 												((MerillMissionStub)pm).techRequired);
 											if(tech != null)
 											{ 
 												//Set it
-												MerillData.print("[MERILL] RD find good tech " + tech.name);
+												MerillData.log(" RD find good tech " + tech.name);
 												aPart.TechRequired = ((MerillMissionStub)pm).techRequired;
 												tech.partsAssigned.Add(aPart);
-												MerillData.print("[MERILL] RD find tech assigned " );
+												MerillData.log(" RD find tech assigned " );
 
-												MerillData.print("[MERILL] RD good tech purchased? " + tech.state
+												MerillData.log(" RD good tech purchased? " + tech.state
 													+" , "+tech.enabled+", ");
 												//already researched?
 												if (ResearchAndDevelopment.GetTechnologyState(((MerillMissionStub)pm).techRequired) == RDTech.State.Available)
@@ -139,7 +139,7 @@ namespace KspMerillEngineFail
 										}
 										catch (Exception e)
 										{
-											MerillData.print("[MERILL] RD Exeption:  "+e);
+											MerillData.log(" RD Exeption:  "+e);
 										}
 									}
 								}
@@ -161,29 +161,29 @@ namespace KspMerillEngineFail
 			}
 			catch (Exception e)
 			{
-				MerillData.print("[MERILL] exception at contract OnAccepted:" + e);
+				MerillData.log(" exception at contract OnAccepted:" + e);
 			}
 		}
 
 		private void addExperimentalPart(string sExperimentalPartName)
 		{
-			MerillData.print("[MERILL]accepted contract with experimental part: " + sExperimentalPartName);
+			MerillData.log("accepted contract with experimental part: " + sExperimentalPartName);
 
 			if (sExperimentalPartName != null)
 			{
 				AvailablePart experimentalPart = PartLoader.getPartInfoByName(sExperimentalPartName);
 
-				MerillData.print("[MERILL]experimental part: " + experimentalPart + ", " + (experimentalPart == null ? "" : ""+ResearchAndDevelopment.IsExperimentalPart(experimentalPart)));
+				MerillData.log("experimental part: " + experimentalPart + ", " + (experimentalPart == null ? "" : ""+ResearchAndDevelopment.IsExperimentalPart(experimentalPart)));
 				if (experimentalPart != null && !ResearchAndDevelopment.IsExperimentalPart(experimentalPart))
 				{
-					MerillData.print("[MERILL]: Unlocking part: " + sExperimentalPartName);
+					MerillData.log(": Unlocking part: " + sExperimentalPartName);
 
 					ResearchAndDevelopment.AddExperimentalPart(experimentalPart);
 					//expPartToRemove.Add(experimentalPart.name);
 				}
 				else
 				{
-					MerillData.print("[MERILL]: Part unvailable / already research: " + sExperimentalPartName);
+					MerillData.log(": Part unvailable / already research: " + sExperimentalPartName);
 				}
 			}
 		}
@@ -191,7 +191,7 @@ namespace KspMerillEngineFail
 		protected override void OnFinished()
 		{
 			base.OnFinished();
-			MerillData.print("[MERILL]plantmunflag: OnFinished ");
+			MerillData.log("plantmunflag: OnFinished ");
 			removeExperimentalParts();
 		}
 		
@@ -215,17 +215,17 @@ namespace KspMerillEngineFail
 								if (((MerillMissionStub)pm).missionName.Equals(this.GetType().Name))
 								{
 
-									MerillData.print("[merill] RD find a part " + pm.name);
-									MerillData.print("[merill] RD purchased? " + ResearchAndDevelopment.PartModelPurchased(aPart));
-									MerillData.print("[merill] RD available? " + ResearchAndDevelopment.PartTechAvailable(aPart));
-									MerillData.print("[merill] RD mi '" + aPart.moduleInfo+"'");
-									MerillData.print("[merill] RD tech required: " + aPart.TechRequired);
-									MerillData.print("[merill] RD tech Really required: " + ((MerillMissionStub)pm).techRequired);
+									MerillData.log(" RD find a part " + pm.name);
+									MerillData.log(" RD purchased? " + ResearchAndDevelopment.PartModelPurchased(aPart));
+									MerillData.log(" RD available? " + ResearchAndDevelopment.PartTechAvailable(aPart));
+									MerillData.log(" RD mi '" + aPart.moduleInfo+"'");
+									MerillData.log(" RD tech required: " + aPart.TechRequired);
+									MerillData.log(" RD tech Really required: " + ((MerillMissionStub)pm).techRequired);
 									//research and set
 									if (ResearchAndDevelopment.GetTechnologyState(((MerillMissionStub)pm).techRequired) == RDTech.State.Available
 										&& aPart.TechRequired == ((MerillMissionStub)pm).techRequired)
 									{
-										MerillData.print("[merill] RD purchased, is experimental? " 
+										MerillData.log(" RD purchased, is experimental? " 
 											+ ResearchAndDevelopment.IsExperimentalPart(
 												PartLoader.getPartInfoByName(((MerillMissionStub)pm).partUnlock)));
 										//check if experimental
@@ -238,7 +238,7 @@ namespace KspMerillEngineFail
 											RDTech tech = AssetBase.RnDTechTree.FindTech(aPart.TechRequired);
 											if (tech != null)
 											{
-												MerillData.print("[MERILL] RD find good tech " + tech.name);
+												MerillData.log(" RD find good tech " + tech.name);
 												aPart.TechRequired = "specializedControl";
 												tech.partsAssigned.Remove(aPart);
 											}
@@ -248,15 +248,15 @@ namespace KspMerillEngineFail
 									{
 										try {
 											//try to remove the stub to a research node
-											MerillData.print("[MERILL] RD find a part with r&d node " + pm.name);
+											MerillData.log(" RD find a part with r&d node " + pm.name);
 
 											RDTech tech = AssetBase.RnDTechTree.FindTech(aPart.TechRequired);
 											if(tech != null)
 											{ 
-												MerillData.print("[MERILL] RD find good tech " + tech.name);
+												MerillData.log(" RD find good tech " + tech.name);
 												aPart.TechRequired = "specializedControl";
 												tech.partsAssigned.Remove(aPart);
-												MerillData.print("[MERILL] RD find tech assigned ");
+												MerillData.log(" RD find tech assigned ");
 												if (ResearchAndDevelopment.GetTechnologyState(((MerillMissionStub)pm).techRequired) == RDTech.State.Available)
 												{
 													removeExperimentalPart(((MerillMissionStub)pm).partUnlock);
@@ -265,7 +265,7 @@ namespace KspMerillEngineFail
 										}
 										catch (Exception e)
 										{
-											MerillData.print("[MERILL] RD Exeption:  "+e);
+											MerillData.log(" RD Exeption:  "+e);
 										}
 									}
 								}
@@ -276,7 +276,7 @@ namespace KspMerillEngineFail
 			}
 			catch (Exception e)
 			{
-				MerillData.print("[MERILL] exception at contract OnAccepted:" + e);
+				MerillData.log(" exception at contract OnAccepted:" + e);
 			}
 		}
 
@@ -294,7 +294,7 @@ namespace KspMerillEngineFail
 							{
 								if (ResearchAndDevelopment.GetTechnologyState(((MerillMissionStub)pm).techRequired) == RDTech.State.Available)
 								{
-									MerillData.print("[merill] RD purchased, is experimental? "
+									MerillData.log(" RD purchased, is experimental? "
 										+ ResearchAndDevelopment.IsExperimentalPart(
 											PartLoader.getPartInfoByName(((MerillMissionStub)pm).partUnlock)));
 									//check if already experimental
@@ -306,16 +306,16 @@ namespace KspMerillEngineFail
 									try
 									{
 										//try to remove the stub to a research node
-										MerillData.print("[MERILL] RD find a part with r&d node " + pm.name);
+										MerillData.log(" RD find a part with r&d node " + pm.name);
 
 										RDTech tech = AssetBase.RnDTechTree.FindTech(
 											((MerillMissionStub)pm).techRequired);
 										if (tech != null)
 										{
-											MerillData.print("[MERILL] RD find good tech " + tech.name);
+											MerillData.log(" RD find good tech " + tech.name);
 											aPart.TechRequired = "specializedControl";
 											tech.partsAssigned.Remove(aPart);
-											MerillData.print("[MERILL] RD find tech assigned ");
+											MerillData.log(" RD find tech assigned ");
 											if (ResearchAndDevelopment.GetTechnologyState(((MerillMissionStub)pm).techRequired) == RDTech.State.Available)
 											{
 												doWithApart(((MerillMissionStub)pm).partUnlock);
@@ -324,7 +324,7 @@ namespace KspMerillEngineFail
 									}
 									catch (Exception e)
 									{
-										MerillData.print("[MERILL] RD Exeption:  " + e);
+										MerillData.log(" RD Exeption:  " + e);
 									}
 								}
 							}
@@ -335,7 +335,7 @@ namespace KspMerillEngineFail
 		}
 		private void removeExperimentalPart(string sExperimentalPartName)
 		{
-			MerillData.print("[MERILL]plantmunflag: DECLINED contract with experimental part: " + sExperimentalPartName);
+			MerillData.log("plantmunflag: DECLINED contract with experimental part: " + sExperimentalPartName);
 
 			if (sExperimentalPartName != null)
 			{
@@ -343,7 +343,7 @@ namespace KspMerillEngineFail
 
 				if (experimentalPart != null && ResearchAndDevelopment.IsExperimentalPart(experimentalPart))
 				{
-					MerillData.print("[MERILL]plantmunflag: Locking part: " + sExperimentalPartName);
+					MerillData.log("plantmunflag: Locking part: " + sExperimentalPartName);
 
 					ResearchAndDevelopment.RemoveExperimentalPart(experimentalPart);
 				}
@@ -356,31 +356,31 @@ namespace KspMerillEngineFail
 		private void refreshExperimentalParts(GameEvents.HostTargetAction<RDTech, RDTech.OperationResult> newResearch)
 		{
 
-			//MerillData.print("[Merill] refreshExperimentalParts NOde:  " + newResearch.ToString()
+			//MerillData.log(" refreshExperimentalParts NOde:  " + newResearch.ToString()
 			//	+ ", " + newResearch.host.name + " is " + newResearch.target);
-			//MerillData.print("[Merill] refreshExperimentalParts date accepted:  " + this.dateAccepted);
+			//MerillData.log(" refreshExperimentalParts date accepted:  " + this.dateAccepted);
 
 			//if (newResearch.target == RDTech.OperationResult.Successful)
 			//{
-			//	MerillData.print("[Merill] refreshExperimentalParts accepted :  " + newResearch.host.partsPurchased.Count);
+			//	MerillData.log(" refreshExperimentalParts accepted :  " + newResearch.host.partsPurchased.Count);
 			//}
-			//MerillData.print("[Merill] refreshExperimentalParts Assigned");
+			//MerillData.log(" refreshExperimentalParts Assigned");
 			foreach (AvailablePart aPart in newResearch.host.partsAssigned)
 			{
 				if (aPart.partPrefab != null && aPart.partPrefab.Modules != null)
 				{
-					//MerillData.print("[Merill] refreshExperimentalParts find part" + aPart.name);
+					//MerillData.log(" refreshExperimentalParts find part" + aPart.name);
 
 					foreach (PartModule pm in aPart.partPrefab.Modules)
 					{
-						//MerillData.print("[Merill] refreshExperimentalParts find pm " + pm.name + ", " + pm.moduleName);
+						//MerillData.log(" refreshExperimentalParts find pm " + pm.name + ", " + pm.moduleName);
 						if (pm.moduleName.Equals("MerillMissionStub"))
 						{
-							//MerillData.print("[Merill] refreshExperimentalParts find pmmoduleName on part for mission " + this.GetType().Name);
-							//MerillData.print("[Merill] refreshExperimentalParts find pmmoduleName on part for mission " + ((MerillMissionStub)pm).missionName);
+							//MerillData.log(" refreshExperimentalParts find pmmoduleName on part for mission " + this.GetType().Name);
+							//MerillData.log(" refreshExperimentalParts find pmmoduleName on part for mission " + ((MerillMissionStub)pm).missionName);
 							if (((MerillMissionStub)pm).missionName.Equals(this.GetType().Name))
 							{
-								//MerillData.print("[Merill] refreshExperimentalParts READY TO ADD " + aPart.name);
+								//MerillData.log(" refreshExperimentalParts READY TO ADD " + aPart.name);
 								//add it to this 
 								addExperimentalPart(((MerillMissionStub)pm).partUnlock);
 							}
@@ -452,7 +452,7 @@ namespace KspMerillEngineFail
 
 		protected override void OnLoad(ConfigNode node)
 		{
-			MerillData.print("[Merill] contract OnLoad " + this.dateAccepted);
+			MerillData.log(" contract OnLoad " + this.dateAccepted);
 			base.OnLoad(node);
 			//accepted? register listener?
 			if (this.dateAccepted > 0 && !listenerRegistered) 
@@ -475,7 +475,7 @@ namespace KspMerillEngineFail
 
 		protected override void OnSave(ConfigNode node)
 		{
-			MerillData.print("[Merill] contract OnSave ");
+			MerillData.log(" contract OnSave ");
 			//GameEvents.OnTechnologyResearched.Remove(refreshExperimentalParts);
 			base.OnSave(node);
 		}
