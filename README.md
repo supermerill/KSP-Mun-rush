@@ -18,9 +18,9 @@ This mod/scenario is targeted for players already familiar with BTSM and wanting
 - An engine can only start a number of time, according to his number of "igniter" resource.
 - [normal & hard difficulty only] Need to test engines at ground before using them (consume time)
 
-** This scenario needs (for the time being) a dedicated intallation of KSP **
+**This scenario needs (for the time being) a dedicated intallation of KSP**
 ### Mandatory mods:
-- This scenario mod [download](https://github.com/supermerill/KSP-Mun-rush/tree/master/releases/KSP-Mun-rush_alpha2.zip)
+- This scenario mod [download](https://kerbalstuff.com/mod/692/Mun%20rush)
 - Better Than Starting Manned : [ksp thread](http://forum.kerbalspaceprogram.com/threads/61632-0-9-Better-Than-Starting-Manned-Career-Mode-Redefined-%28v0-Feb-17th%29) (v0 - Feb 17th) [wiki](http://btsm.wikia.com/wiki/Better_Than_Starting_Manned_Wiki) (by FlowerChild)
 - Kerbal Time Contruction : [ksp thread](http://forum.kerbalspaceprogram.com/threads/92377-0-90-Kerbal-Construction-Time-1-1-5-%2803-24-15%29-Unrapid-Planned-Assembly) (by magico13)
 - Deadly reentry : [ksp thread](http://forum.kerbalspaceprogram.com/threads/54954-0-90-Deadly-Reentry-v6-5-3-Beta-Mar-6-2015) (by r4m0n/ialdabaoth/NathanKell/Starwaster)
@@ -29,7 +29,8 @@ This mod/scenario is targeted for players already familiar with BTSM and wanting
 
 ### Strongly advisable:
 - PreciseNode : [ksp thread](http://forum.kerbalspaceprogram.com/threads/47863-0-90-0-Precise-Node-1-1-2-Precisely-edit-your-maneuver-nodes) (by Regex/blizzy78)
-- KerbalAlamrClock : [ksp thread](http://forum.kerbalspaceprogram.com/threads/24786-0-90-Kerbal-Alarm-Clock-v3-2-4-0-%28Mar-30%29) (by TriggerAu)
+- KerbalAlarmClock : [ksp thread](http://forum.kerbalspaceprogram.com/threads/24786-0-90-Kerbal-Alarm-Clock-v3-2-4-0-%28Mar-30%29) (by TriggerAu)
+- Navball docking alignment indicator [ksp thread](http://forum.kerbalspaceprogram.com/threads/54303-0-90-Navball-docking-alignment-indicator-v6) (by mic_e)
 
 ## Tips (should be read):
 ### New game:

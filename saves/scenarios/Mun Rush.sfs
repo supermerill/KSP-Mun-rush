@@ -1982,9 +1982,9 @@ GAME
 			BTSMSolidRocket2Atmo = 600
 			BTSMSolidRocket2Vac = 0
 			BTSMLiquidEngine1Atmo = 600
-			BTSMLiquidEngine1Vac = 60
-			BTSMLiquidEngine3Atmo = 50
-			BTSMLiquidEngine3Vac = 180
+			BTSMLiquidEngine1Vac = 0
+			BTSMLiquidEngine3Atmo = 600
+			BTSMLiquidEngine3Vac = 0
 			BTSMLiquidEngine1-2Atmo = 6
 			BTSMLiquidEngine1-2Vac = 0
 			liquidEngine2-2Atmo = 6

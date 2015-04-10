@@ -9,12 +9,12 @@ namespace KspMerillEngineFail
     public class MerillEngineFail : PartModule
 	{
 
-		[KSPField]
+		[KSPField(isPersistant=true)]
 		int nbStart=0;
 
-		[KSPField]
+		[KSPField(isPersistant = true)]
 		bool isRunning = false;
-		[KSPField]
+		[KSPField(isPersistant = true)]
 		bool failstart = false;
 
 		ModuleEngines engine = null;
@@ -26,7 +26,8 @@ namespace KspMerillEngineFail
 
 		public override void OnStart(StartState state)
 		{
-			isRunning = false;
+			isRunning = isEngineRunning();
+			MerillData.log("enginestart: is started? " + isRunning);
 			if (part.Modules.OfType<ModuleEngines>().ToList().Capacity > 0)
 			{
 				engine = part.Modules.OfType<ModuleEngines>().ToList()[0];
@@ -77,6 +78,7 @@ namespace KspMerillEngineFail
 	public override void OnUpdate(){
 
 		base.OnUpdate();
+		countUpdate++;
 
 		//sanity check
 		if (engine != null || engineFX != null)
@@ -187,13 +189,14 @@ namespace KspMerillEngineFail
 				//startup occur?
 			else if (isEngineRunning())// engine.EngineIgnited && engine.currentThrottle>0  && engine.fuelFlowGui > 0) 
 			{
+				MerillData.log("enginestart: START! " + countUpdate);
 				nbStart++;
 				isRunning = true;
 				//note: the min htrust is not atmo-corrected by btsm (nor me). It's not very usefull anyway.
 				if (engine == null) engineFX.minThrust = realMinThrust;
 				else engine.minThrust = realMinThrust;
 
-				float ressourceGet = part.RequestResource("EngineIgniter",1f);
+				float ressourceGet = (countUpdate<2)?(1):(part.RequestResource("EngineIgniter", 1f));
 				//if not enough ressource, fail!
 				if (ressourceGet <= 0.01)
 				{

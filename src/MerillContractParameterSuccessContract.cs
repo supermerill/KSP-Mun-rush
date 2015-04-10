@@ -43,12 +43,14 @@ namespace KspMerillEngineFail
 
 		protected override void OnRegister()
 		{
+			MerillData.log("ParameterSuccessContract OnRegister");
 			GameEvents.Contract.onCompleted.Add(OnContractSuccessCallback);
 			GameEvents.Contract.onFailed.Add(OnContractFailCallback);
 		}
 
 		protected override void OnUnregister()
 		{
+			MerillData.log("ParameterSuccessContract OnUnRegister");
 			GameEvents.Contract.onCompleted.Remove(OnContractSuccessCallback);
 			GameEvents.Contract.onFailed.Remove(OnContractFailCallback);
 		}
@@ -70,7 +72,8 @@ namespace KspMerillEngineFail
 
 		private void OnContractSuccessCallback(Contract contract)
 		{
-			if (contract.Title.Equals(contractTitle))
+			MerillData.log("ParameterSuccessContract SuccessCallback '" + contract.Title.ToLower() + "' ? '" + contractTitle+"'");
+			if (contract.Title.ToLower().Equals(contractTitle.ToLower()))
 			{
 				SetComplete();
 			}
@@ -78,7 +81,8 @@ namespace KspMerillEngineFail
 
 		private void OnContractFailCallback(Contract contract)
 		{
-			if (contract.Title.Equals(contractTitle))
+			MerillData.log("ParameterSuccessContract FailCallback '" + contract.Title.ToLower() + "' ? '" + contractTitle + "'");
+			if (contract.Title.ToLower().Equals(contractTitle.ToLower()))
 			{
 				SetFailed();
 			}
