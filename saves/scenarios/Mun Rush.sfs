@@ -2168,14 +2168,16 @@ GAME
 				Item = 6
 				Item = BTSMSolidRocket2
 				Item = 20
-				Item = probeCoreSphere
-				Item = 1
 				Item = rcsTankMini
 				Item = 10
 				Item = BTSMBatteryPack1
 				Item = 60
 				Item = BTSMLiquidEngine1-2
+				Item = 3
+				Item = liquidEngine2
 				Item = 5
+				Item = longAntenna
+				Item = 10
 			}
 		}
 		KSC

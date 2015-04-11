@@ -90,7 +90,8 @@ namespace KspMerillEngineFail
 		{
 
 			print("|MERILL]enginetestAO : recompute info with data " + MerillData.instance);
-			loadDataFromScenario(MerillData.instance);
+			if (maxNBSecBurnAtmo <= 0 && maxNBRestartAtmo <= 0)
+				loadDataFromScenario(MerillData.instance);
 			string sDescString = "";//<b>Tested startup:</b>\n";
 			if (maxIgniter > 0)
 			{
@@ -166,6 +167,7 @@ namespace KspMerillEngineFail
 
 		protected int burnTime()
 		{
+			//MerillData.log("enginetestAtm burn time: " + previousBurnTime + "+" + (int)Math.Max(part.vessel.launchTime - timeIgnitedLaunch, part.vessel.missionTime - timeIgnitedMission));
 			return previousBurnTime + (int)Math.Max(part.vessel.launchTime - timeIgnitedLaunch, part.vessel.missionTime - timeIgnitedMission);
 		}
 

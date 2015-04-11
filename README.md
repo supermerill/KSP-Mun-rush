@@ -18,10 +18,13 @@ This mod/scenario is targeted for players already familiar with BTSM and wanting
 - An engine can only start a number of time, according to his number of "igniter" resource.
 - [normal & hard difficulty only] Need to test engines at ground before using them (consume time)
 
-**This scenario needs (for the time being) a dedicated intallation of KSP**
+**This scenario needs (for the time being) a dedicated intallation of KSP** 
+
 ### Mandatory mods:
 - This scenario mod [download](https://kerbalstuff.com/mod/692/Mun%20rush)
-- Better Than Starting Manned : [ksp thread](http://forum.kerbalspaceprogram.com/threads/61632-0-9-Better-Than-Starting-Manned-Career-Mode-Redefined-%28v0-Feb-17th%29) (v0 - Feb 17th) [wiki](http://btsm.wikia.com/wiki/Better_Than_Starting_Manned_Wiki) (by FlowerChild)
+- Better Than Starting Manned : [ksp thread](http://forum.kerbalspaceprogram.com/threads/61632-0-9-Better-Than-Starting-Manned-Career-Mode-Redefined-%28v0-Feb-17th%29) (v0 - Feb 17th) [wiki](http://btsm.wikia.com/wiki/Better_Than_Starting_Manned_Wiki) (by FlowerChild)  
+  -> contains BackgroundProcessing from jamespicone  
+  -> contains ModuleManager from ialdabaoth/sarbian 
 - Kerbal Time Contruction : [ksp thread](http://forum.kerbalspaceprogram.com/threads/92377-0-90-Kerbal-Construction-Time-1-1-5-%2803-24-15%29-Unrapid-Planned-Assembly) (by magico13)
 - Deadly reentry : [ksp thread](http://forum.kerbalspaceprogram.com/threads/54954-0-90-Deadly-Reentry-v6-5-3-Beta-Mar-6-2015) (by r4m0n/ialdabaoth/NathanKell/Starwaster)
 - CrossFeedEnabler : [ksp thread](http://forum.kerbalspaceprogram.com/threads/76499-0-90-CrossFeedEnabler-v3-2-Dec-20-14) (by NathanKell)

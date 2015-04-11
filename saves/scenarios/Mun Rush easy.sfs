@@ -2170,6 +2170,8 @@ GAME
 			}
 			PartInventory
 			{
+				Item = probeCoreSphere
+				Item = 2
 				Item = BTSMCockpit1
 				Item = 1
 				Item = BTSMCockpit2
@@ -2180,8 +2182,6 @@ GAME
 				Item = 6
 				Item = BTSMSolidRocket2
 				Item = 20
-				Item = probeCoreSphere
-				Item = 1
 				Item = BTSMLiquidEngine1
 				Item = 20
 				Item = rcsTankMini
@@ -2195,7 +2195,9 @@ GAME
 				Item = BTSMBatteryPack1
 				Item = 60
 				Item = BTSMLiquidEngine1-2
-				Item = 5
+				Item = 1
+				Item = liquidEngine2
+				Item = 1
 			}
 		}
 		KSC

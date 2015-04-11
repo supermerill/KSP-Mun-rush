@@ -1,6 +1,6 @@
 OverallMultiplier = 0.6
 BuildEffect = 1
-InventoryEffect = 5
+InventoryEffect = 8
 ReconditioningEffect = 1728
 MaxReconditioning = 345600
 RolloutReconSplit = 0

@@ -109,7 +109,8 @@ namespace KspMerillEngineFail
 		{
 
 			//print("|MERILL]enginetest : recompute info with data " + MerillData.instance);
-			loadDataFromScenario(MerillData.instance);
+			if(maxNBSecBurnAtmo <= 0 && maxNBRestartAtmo <=0)
+				loadDataFromScenario(MerillData.instance);
 			string sDescString = "";//<b>Tested startup:</b>\n";
 			if (maxIgniter > 0)
 			{

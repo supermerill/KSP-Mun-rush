@@ -127,6 +127,14 @@ namespace KspMerillEngineFail
 					//MerillData.log("sciecnefail set to inoperable");
 					scienceExperiment.SetInoperable();
 				}
+
+				MerillData.instance.nbPartDestroy++;
+				if (!MerillData.instance.partNameCrashed.Contains(part.name + "_Break"))
+					MerillData.instance.partNameCrashed.Add(part.name + "_Break");
+
+				MerillData.instance.nbPartTested++;
+				if (!MerillData.instance.partNameTested.Contains(part.name + "_Break"))
+					MerillData.instance.partNameTested.Add(part.name + "_Break");
 				//emit message
 				//ScreenMessages.PostScreenMessage("Experiment " + part.partInfo.title.ToString()
 				//	+ " is not working anymore, something britlle or delicate has fail."
