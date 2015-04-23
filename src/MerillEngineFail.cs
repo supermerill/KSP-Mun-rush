@@ -6,6 +6,7 @@ using UnityEngine;
 
 namespace KspMerillEngineFail
 {
+	//todo: make something for the plume of engineFX
     public class MerillEngineFail : PartModule
 	{
 

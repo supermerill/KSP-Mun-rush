@@ -6,6 +6,7 @@ using UnityEngine;
 
 namespace KspMerillEngineFail
 {
+	//DONOT USE THIS, use the more versatile version with needvactest at false
 	[KSPModule("Engine Test")]
 	public class MerillEngineTestAtmoOnly : MerillAbstractPartTest
 	{

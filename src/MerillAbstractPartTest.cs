@@ -55,7 +55,7 @@ namespace KspMerillEngineFail
 			print("|MERILL]Abs part test : recompute info");
 		}
 
-		public bool isAtmo()
+		public virtual bool isAtmo()
 		{
 			return FlightGlobals.getStaticPressure() > 0;
 		}

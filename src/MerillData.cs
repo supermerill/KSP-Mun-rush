@@ -99,9 +99,11 @@ namespace KspMerillEngineFail
 
 		// ******  common part test ******
 
+		//not used ?
 		[KSPField(isPersistant = true)]
 		public int nbPartDestroy = 0;
 
+		//not used ?
 		[KSPField(isPersistant = true)]
 		public int nbPartTested = 0;
 
@@ -134,7 +136,14 @@ namespace KspMerillEngineFail
 				//print("[MERILL] DATA starting!!! because " + alreadyStarted + " , " + instance);
 				DontDestroyOnLoad(this);
 				GameEvents.Contract.onContractsLoaded.Add(new EventVoid.OnEvent(removeBoringBTSMContract));
-
+				//set low alt of mun at higher alt to allow farside crater in a fly-by
+				foreach (CelestialBody body in FlightGlobals.Bodies)
+				{
+					if (body.name == "Mun")
+					{
+						body.scienceValues.spaceAltitudeThreshold = 90000;
+					}
+				}
 				instance = this;
 
 			}
